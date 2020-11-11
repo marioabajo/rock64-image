@@ -10,8 +10,7 @@ fi
 
 # Download from repository the latest configuration and patches
 if [ "$UPDATE_CONFIG" == 1 ]; then
-	wget https://github.com/marioabajo/rock64-image/archive/main.zip
-	unzip main.zip
+	git clone https://github.com/marioabajo/rock64-image
 	cp -av build-image/buildroot/* buildroot
 	cp buildroot/buildroot.config buildroot/.config
 fi
