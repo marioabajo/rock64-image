@@ -1,6 +1,6 @@
 diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-mod/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2020-12-16 01:00:23.143121115 +0100
-+++ buildroot-2020.11-mod/package/Config.in	2020-12-16 00:59:02.871895685 +0100
+--- buildroot-2020.11-a/package/Config.in	2020-12-18 02:50:03.461899776 +0100
++++ buildroot-2020.11-mod/package/Config.in	2020-12-18 02:50:21.087400295 +0100
 @@ -2423,6 +2423,7 @@
  	source "package/openrc/Config.in"
  	source "package/openvmtools/Config.in"
@@ -11,8 +11,8 @@ diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-mod/package/Co
  	source "package/procps-ng/Config.in"
 diff -uNr buildroot-2020.11-a/package/podman/Config.in buildroot-2020.11-mod/package/podman/Config.in
 --- buildroot-2020.11-a/package/podman/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/podman/Config.in	2020-12-08 16:54:23.689965912 +0100
-@@ -0,0 +1,19 @@
++++ buildroot-2020.11-mod/package/podman/Config.in	2020-12-18 02:51:09.987579088 +0100
+@@ -0,0 +1,20 @@
 +config BR2_PACKAGE_PODMAN
 +	bool "podman"
 +	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
@@ -24,6 +24,7 @@ diff -uNr buildroot-2020.11-a/package/podman/Config.in buildroot-2020.11-mod/pac
 +	select BR2_PACKAGE_CONMON
 +	select BR2_PACKAGE_LIBGPGME
 +	select BR2_PACKAGE_UTIL_LINUX_NSENTER
++	select BR2_PACKAGE_LIBSECCOMP
 +
 +	help
 +	  Podman (the POD MANager) is a tool for managing containers and images, 
@@ -34,7 +35,7 @@ diff -uNr buildroot-2020.11-a/package/podman/Config.in buildroot-2020.11-mod/pac
 +
 diff -uNr buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-mod/package/podman/podman.mk
 --- buildroot-2020.11-a/package/podman/podman.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/podman/podman.mk	2020-12-11 02:36:31.666860577 +0100
++++ buildroot-2020.11-mod/package/podman/podman.mk	2020-12-18 02:51:19.268374671 +0100
 @@ -0,0 +1,60 @@
 +################################################################################
 +#
@@ -53,11 +54,11 @@ diff -uNr buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-mod/pac
 +PODMAN_DEPENDENCIES = libgpgme conmon
 +
 +# Add btrfs support
-+ifeq ($(BR2_PACKAGE_BTRFS_PROGS),y)
-+PODMAN_DEPENDENCIES += libbtrfs
-+else
-+PODMAN_TAGS += exclude_graphdriver_btrfs
-+endif
++#ifeq ($(BR2_PACKAGE_BTRFS_PROGS),y)
++#PODMAN_DEPENDENCIES += libbtrfs
++#else
++#PODMAN_TAGS += exclude_graphdriver_btrfs
++#endif
 +
 +# Add seccomp support
 +ifeq ($(BR2_PACKAGE_LIBSECCOMP),y)
@@ -68,7 +69,7 @@ diff -uNr buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-mod/pac
 +# Add systemd support
 +ifeq ($(BR2_PACKAGE_SYSTEMD),y)
 +PODMAN_TAGS += systemd
-+PODMAN_DEPENDENCIES += libsystemd
++#PODMAN_DEPENDENCIES += libsystemd
 +endif
 +
 +# Add selinux support
