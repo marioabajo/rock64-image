@@ -1,6 +1,6 @@
-diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-mod/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2020-12-18 02:52:46.015845933 +0100
-+++ buildroot-2020.11-mod/package/Config.in	2020-12-18 02:54:36.337427462 +0100
+diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
+--- buildroot-2020.11-a/package/Config.in	2020-12-21 02:02:43.568972144 +0100
++++ buildroot-2020.11-b/package/Config.in	2020-12-21 02:06:01.120003114 +0100
 @@ -1682,6 +1682,7 @@
  	source "package/c-ares/Config.in"
  	source "package/canfestival/Config.in"
@@ -9,9 +9,9 @@ diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-mod/package/Co
  	source "package/cppzmq/Config.in"
  	source "package/curlpp/Config.in"
  	source "package/czmq/Config.in"
-diff -uNr buildroot-2020.11-a/package/containernetworking-plugins/Config.in buildroot-2020.11-mod/package/containernetworking-plugins/Config.in
+diff -uNr buildroot-2020.11-a/package/containernetworking-plugins/Config.in buildroot-2020.11-b/package/containernetworking-plugins/Config.in
 --- buildroot-2020.11-a/package/containernetworking-plugins/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/containernetworking-plugins/Config.in	2020-12-18 00:54:40.618792724 +0100
++++ buildroot-2020.11-b/package/containernetworking-plugins/Config.in	2020-12-18 00:54:40.618792724 +0100
 @@ -0,0 +1,16 @@
 +config BR2_PACKAGE_CONTAINERNETWORKING_PLUGINS
 +	bool "containernetworking-plugins"
@@ -29,10 +29,10 @@ diff -uNr buildroot-2020.11-a/package/containernetworking-plugins/Config.in buil
 +
 +	  https://github.com/containernetworking/plugins
 +
-diff -uNr buildroot-2020.11-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2020.11-mod/package/containernetworking-plugins/containernetworking-plugins.mk
+diff -uNr buildroot-2020.11-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2020.11-b/package/containernetworking-plugins/containernetworking-plugins.mk
 --- buildroot-2020.11-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/containernetworking-plugins/containernetworking-plugins.mk	2020-12-18 02:22:48.700915523 +0100
-@@ -0,0 +1,19 @@
++++ buildroot-2020.11-b/package/containernetworking-plugins/containernetworking-plugins.mk	2020-12-20 03:01:48.886487902 +0100
+@@ -0,0 +1,28 @@
 +################################################################################
 +#
 +# container networking plugins
@@ -50,5 +50,14 @@ diff -uNr buildroot-2020.11-a/package/containernetworking-plugins/containernetwo
 +CONTAINERNETWORKING_PLUGINS_BUILD_TARGETS += plugins/ipam/dhcp plugins/ipam/static plugins/ipam/host-local
 +
 +CONTAINERNETWORKING_PLUGINS_INSTALL_BINS = $(notdir $(CONTAINERNETWORKING_PLUGINS_BUILD_TARGETS))
++
++define CONTAINERNETWORKING_PLUGINS_POST_INSTALL_HELPER
++	for i in $(CONTAINERNETWORKING_PLUGINS_BUILD_TARGETS); do \
++		PLUGIN_FILENAME=$$(basename $$i); \
++		ln -fs /usr/bin/$$PLUGIN_FILENAME $(TARGET_DIR)/opt/cni/bin/$$PLUGIN_FILENAME; \
++	done
++endef
++
++CONTAINERNETWORKING_PLUGINS_POST_INSTALL_TARGET_HOOKS += CONTAINERNETWORKING_PLUGINS_POST_INSTALL_HELPER
 +
 +$(eval $(golang-package))
