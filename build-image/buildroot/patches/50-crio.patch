@@ -12,7 +12,7 @@ diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Conf
 diff -uNr buildroot-2020.11-a/package/crio/Config.in buildroot-2020.11-b/package/crio/Config.in
 --- buildroot-2020.11-a/package/crio/Config.in	1970-01-01 01:00:00.000000000 +0100
 +++ buildroot-2020.11-b/package/crio/Config.in	2020-12-08 23:56:20.849642115 +0100
-@@ -0,0 +1,24 @@
+@@ -0,0 +1,25 @@
 +config BR2_PACKAGE_CRIO
 +	bool "cri-o"
 +	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
@@ -28,6 +28,7 @@ diff -uNr buildroot-2020.11-a/package/crio/Config.in buildroot-2020.11-b/package
 +	select BR2_PACKAGE_IPROUTE2
 +	select BR2_PACKAGE_IPTABLES
 +	select BR2_PACKAGE_UTIL_LINUX_NSENTER
++	select BR2_PACKAGE_LVM2
 +
 +	help
 +	  CRI-O is meant to provide an integration path between OCI conformant 
@@ -55,7 +56,7 @@ diff -uNr buildroot-2020.11-a/package/crio/crio.mk buildroot-2020.11-b/package/c
 +
 +CRIO_TAGS = cgo seccomp
 +
-+CRIO_DEPENDENCIES = libseccomp libgpgme btrfs-progs
++CRIO_DEPENDENCIES = libseccomp libgpgme btrfs-progs lvm2
 +
 +CRIO_BUILD_TARGETS = cmd/crio 
 +

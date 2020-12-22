@@ -36,7 +36,7 @@ diff -uNr buildroot-2020.11-a/package/podman/Config.in buildroot-2020.11-mod/pac
 diff -uNr buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-mod/package/podman/podman.mk
 --- buildroot-2020.11-a/package/podman/podman.mk	1970-01-01 01:00:00.000000000 +0100
 +++ buildroot-2020.11-mod/package/podman/podman.mk	2020-12-18 02:51:19.268374671 +0100
-@@ -0,0 +1,60 @@
+@@ -0,0 +1,61 @@
 +################################################################################
 +#
 +# podman
@@ -83,6 +83,7 @@ diff -uNr buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-mod/pac
 +PODMAN_DEPENDENCIES += libapparmor
 +endif
 +
++PODMAN_GOMOD = .
 +PODMAN_BUILD_TARGETS = cmd/podman
 +PODMAN_INSTALL_BINS = $(notdir $(PODMAN_BUILD_TARGETS))
 +
