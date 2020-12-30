@@ -3,7 +3,7 @@ Description=First boot configuration script
 After=boot-complete.target
 
 [Service]
-Type=oneshoot
+Type=idle
 ExecStart=/usr/share/firstboot/firstboot.sh
 StandardInput=tty
 TTYPath=/dev/ttyS2
