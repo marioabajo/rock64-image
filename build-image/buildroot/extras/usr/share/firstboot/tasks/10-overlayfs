@@ -3,20 +3,39 @@
 # Desc:
 # Add overlayfs to save system modifications to original image
 
+set +e
+
+function try_mount()
+{
+	tries=3
+	while [ $tries -ne 0 ]; do
+		echo -n "Mounting $@ (try 3/$tries)... "
+		mount $@
+		err=$?
+		if [ $err -eq 0 ]; then
+			echo "ok"
+			break;
+		else
+			echo "error $err"
+		fi
+		sleep 1
+		((tries--))
+	done
+}
+
+# Create overlay partition
 if [ ! -e /dev/disk/by-label/overlayfs ]; then
 	echo -e "n\n4\n\n+500M\nw\nq\n" | fdisk /dev/mmcblk0
 	mkfs.ext4 /dev/mmcblk0p4
 	tune2fs -L overlayfs /dev/mmcblk0p4 
 fi
 
-# check overlay kernel module and load it to prevent races
-(lsmod | grep -q overlay) || modprobe overlay
-
-mount /media/overlayfs
-mkdir /media/overlayfs/workdir
+# Mount it
+try_mount /media/overlayfs
 
 for dir in etc root home; do
+	echo "Creating \"$dir\" overlay..."
 	mkdir /media/overlayfs/$dir
-	mkdir /media/overlayfs/workdir/$dir
-	mount /$dir
+	mkdir -p /media/overlayfs/workdir/$dir
+	try_mount /$dir
 done
