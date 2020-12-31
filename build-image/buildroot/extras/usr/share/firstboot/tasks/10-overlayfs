@@ -1,0 +1,21 @@
+#/bin/sh
+
+# Desc:
+# Add overlayfs to save system modifications to original image
+
+if [ ! -e /dev/disk/by-label/overlayfs ]; then
+	echo -e "n\n4\n\n+500M\nw\nq\n" | fdisk /dev/mmcblk0
+	mkfs.ext4 /dev/mmcblk0p4
+	tune2fs -L overlayfs /dev/mmcblk0p4 
+fi
+
+mount /media/overlayfs
+mkdir /media/overlayfs/workdir
+
+for dir in etc root home; do
+	if [ ! -e /media/overlayfs/$dir ]; then
+		mkdir /media/overlayfs/$dir
+		mkdir /media/overlayfs/workdir/$dir
+		mount /$dir
+	fi
+done

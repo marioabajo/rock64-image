@@ -1,6 +1,0 @@
-#/bin/sh
-
-# Desc:
-# Remount root read write to apply changes
-
-mount -o remount,rw /
