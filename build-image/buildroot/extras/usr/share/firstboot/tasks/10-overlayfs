@@ -9,13 +9,14 @@ if [ ! -e /dev/disk/by-label/overlayfs ]; then
 	tune2fs -L overlayfs /dev/mmcblk0p4 
 fi
 
+# check overlay kernel module and load it to prevent races
+(lsmod | grep -q overlay) || modprobe overlay
+
 mount /media/overlayfs
 mkdir /media/overlayfs/workdir
 
 for dir in etc root home; do
-	if [ ! -e /media/overlayfs/$dir ]; then
-		mkdir /media/overlayfs/$dir
-		mkdir /media/overlayfs/workdir/$dir
-		mount /$dir
-	fi
+	mkdir /media/overlayfs/$dir
+	mkdir /media/overlayfs/workdir/$dir
+	mount /$dir
 done
