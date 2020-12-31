@@ -14,6 +14,8 @@ fi
 # Download from repository the latest configuration and patches
 if [ "$UPDATE_CONFIG" == 1 ] || [ ! -e buildroot/.config ]; then
 	git clone https://github.com/marioabajo/rock64-image
+	git checkout master
+	git pull
 	cp -av rock64-image/build-image/buildroot/. buildroot
 	cp -av rock64-image/build-image/buildroot/buildroot.config buildroot/.config
 	if [ -e buildroot/patches ] && [ ! -e buildroot/patches/.applied ]; then

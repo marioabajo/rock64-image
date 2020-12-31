@@ -1,4 +1,4 @@
-#/bin/sh
+#/bin/bash
 
 # Desc:
 # Add overlayfs to save system modifications to original image

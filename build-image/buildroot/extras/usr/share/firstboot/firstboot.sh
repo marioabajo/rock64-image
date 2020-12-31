@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -x -e
 exec 2> /tmp/first-boot.log
@@ -28,7 +28,7 @@ cat <<- EOF > "$script"
 		EOF2
 		PCT=\$( expr \$PCT + \$STEP )
 		echo "#### \$task :" >> /tmp/first-boot.log
-		sh -e "\$task" >> /tmp/first-boot.log 2>&1
+		bash -e "\$task" >> /tmp/first-boot.log 2>&1
 	done
 	) | TERM="vt100" dialog --title "$title" "\$@" --gauge "Running configuration tasks" 7 70 0
 EOF
