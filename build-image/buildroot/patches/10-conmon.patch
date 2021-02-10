@@ -1,6 +1,6 @@
-diff -uNr buildroot-2020.11/package/Config.in buildroot-2020.11-mod/package/Config.in
---- buildroot-2020.11/package/Config.in	2020-12-02 23:21:32.000000000 +0100
-+++ buildroot-2020.11-mod/package/Config.in	2020-12-16 00:54:15.129802757 +0100
+diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
+--- buildroot-2020.11-a/package/Config.in	2020-12-02 23:21:32.000000000 +0100
++++ buildroot-2020.11-b/package/Config.in	2021-02-10 02:25:12.044852381 +0100
 @@ -2379,6 +2379,7 @@
  	source "package/bubblewrap/Config.in"
  	source "package/cgroupfs-mount/Config.in"
@@ -9,9 +9,9 @@ diff -uNr buildroot-2020.11/package/Config.in buildroot-2020.11-mod/package/Conf
  	source "package/coreutils/Config.in"
  	source "package/cpuload/Config.in"
  	source "package/daemon/Config.in"
-diff -uNr buildroot-2020.11/package/conmon/Config.in buildroot-2020.11-mod/package/conmon/Config.in
---- buildroot-2020.11/package/conmon/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/conmon/Config.in	2020-12-08 15:51:56.122191136 +0100
+diff -uNr --no-dereference buildroot-2020.11-a/package/conmon/Config.in buildroot-2020.11-b/package/conmon/Config.in
+--- buildroot-2020.11-a/package/conmon/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2020.11-b/package/conmon/Config.in	2020-12-22 02:05:30.528328069 +0100
 @@ -0,0 +1,15 @@
 +config BR2_PACKAGE_CONMON
 +	bool "conmon"
@@ -28,9 +28,9 @@ diff -uNr buildroot-2020.11/package/conmon/Config.in buildroot-2020.11-mod/packa
 +
 +	  https://github.com/containers/conmon
 +
-diff -uNr buildroot-2020.11/package/conmon/conmon.mk buildroot-2020.11-mod/package/conmon/conmon.mk
---- buildroot-2020.11/package/conmon/conmon.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/conmon/conmon.mk	2020-12-08 16:43:15.559312811 +0100
+diff -uNr --no-dereference buildroot-2020.11-a/package/conmon/conmon.mk buildroot-2020.11-b/package/conmon/conmon.mk
+--- buildroot-2020.11-a/package/conmon/conmon.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2020.11-b/package/conmon/conmon.mk	2020-12-22 02:05:30.532328434 +0100
 @@ -0,0 +1,32 @@
 +################################################################################
 +#

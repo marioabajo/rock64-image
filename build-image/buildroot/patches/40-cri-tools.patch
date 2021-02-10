@@ -1,6 +1,6 @@
-diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2020-12-21 02:07:36.552926761 +0100
-+++ buildroot-2020.11-b/package/Config.in	2020-12-21 02:11:30.842304921 +0100
+diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
+--- buildroot-2020.11-a/package/Config.in	2021-02-10 02:25:12.840940892 +0100
++++ buildroot-2020.11-b/package/Config.in	2021-02-10 02:25:12.840940892 +0100
 @@ -2383,6 +2383,7 @@
  	source "package/conmon/Config.in"
  	source "package/coreutils/Config.in"
@@ -9,7 +9,7 @@ diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Conf
  	source "package/daemon/Config.in"
  	source "package/dc3dd/Config.in"
  	source "package/dcron/Config.in"
-diff -uNr buildroot-2020.11-a/package/cri-tools/Config.in buildroot-2020.11-b/package/cri-tools/Config.in
+diff -uNr --no-dereference buildroot-2020.11-a/package/cri-tools/Config.in buildroot-2020.11-b/package/cri-tools/Config.in
 --- buildroot-2020.11-a/package/cri-tools/Config.in	1970-01-01 01:00:00.000000000 +0100
 +++ buildroot-2020.11-b/package/cri-tools/Config.in	2020-12-19 16:46:32.430731070 +0100
 @@ -0,0 +1,11 @@
@@ -24,7 +24,7 @@ diff -uNr buildroot-2020.11-a/package/cri-tools/Config.in buildroot-2020.11-b/pa
 +
 +	  https://github.com/kubernetes-sigs/cri-tools
 +
-diff -uNr buildroot-2020.11-a/package/cri-tools/cri-tools.mk buildroot-2020.11-b/package/cri-tools/cri-tools.mk
+diff -uNr --no-dereference buildroot-2020.11-a/package/cri-tools/cri-tools.mk buildroot-2020.11-b/package/cri-tools/cri-tools.mk
 --- buildroot-2020.11-a/package/cri-tools/cri-tools.mk	1970-01-01 01:00:00.000000000 +0100
 +++ buildroot-2020.11-b/package/cri-tools/cri-tools.mk	2020-12-19 19:09:00.769669059 +0100
 @@ -0,0 +1,29 @@

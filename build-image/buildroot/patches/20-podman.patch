@@ -1,6 +1,6 @@
-diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-mod/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2020-12-18 02:50:03.461899776 +0100
-+++ buildroot-2020.11-mod/package/Config.in	2020-12-18 02:50:21.087400295 +0100
+diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
+--- buildroot-2020.11-a/package/Config.in	2021-02-10 02:25:12.344885740 +0100
++++ buildroot-2020.11-b/package/Config.in	2021-02-10 02:25:12.348886184 +0100
 @@ -2423,6 +2423,7 @@
  	source "package/openrc/Config.in"
  	source "package/openvmtools/Config.in"
@@ -9,9 +9,9 @@ diff -uNr buildroot-2020.11-a/package/Config.in buildroot-2020.11-mod/package/Co
  	source "package/polkit/Config.in"
  	source "package/powerpc-utils/Config.in"
  	source "package/procps-ng/Config.in"
-diff -uNr buildroot-2020.11-a/package/podman/Config.in buildroot-2020.11-mod/package/podman/Config.in
+diff -uNr --no-dereference buildroot-2020.11-a/package/podman/Config.in buildroot-2020.11-b/package/podman/Config.in
 --- buildroot-2020.11-a/package/podman/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/podman/Config.in	2020-12-18 02:51:09.987579088 +0100
++++ buildroot-2020.11-b/package/podman/Config.in	2020-12-18 02:03:40.763054949 +0100
 @@ -0,0 +1,20 @@
 +config BR2_PACKAGE_PODMAN
 +	bool "podman"
@@ -33,10 +33,10 @@ diff -uNr buildroot-2020.11-a/package/podman/Config.in buildroot-2020.11-mod/pac
 +
 +	  https://github.com/containers/podman
 +
-diff -uNr buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-mod/package/podman/podman.mk
+diff -uNr --no-dereference buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-b/package/podman/podman.mk
 --- buildroot-2020.11-a/package/podman/podman.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-mod/package/podman/podman.mk	2020-12-18 02:51:19.268374671 +0100
-@@ -0,0 +1,61 @@
++++ buildroot-2020.11-b/package/podman/podman.mk	2020-12-30 01:33:19.486039911 +0100
+@@ -0,0 +1,62 @@
 +################################################################################
 +#
 +# podman
@@ -90,6 +90,7 @@ diff -uNr buildroot-2020.11-a/package/podman/podman.mk buildroot-2020.11-mod/pac
 +# TODO:
 +# copy file ./vendor/github.com/containers/common/pkg/seccomp/seccomp.json as /usr/share/containers/seccomp.json
 +# generate file /etc/containers/registries.conf
++# wget https://raw.githubusercontent.com/containers/libpod/master/cni/87-podman-bridge.conflist
 +# copy file /etc/cni/net.d/87-podman-bridge.conflist
 +# generate file /etc/containers/policy.json for example with ./test/policy.json
 +# generate file /etc/containers/registries.conf
