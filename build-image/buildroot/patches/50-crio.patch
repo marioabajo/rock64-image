@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2021-02-10 02:25:13.080967579 +0100
-+++ buildroot-2020.11-b/package/Config.in	2021-02-10 02:25:13.084968024 +0100
+--- buildroot-2020.11-a/package/Config.in	2021-02-10 02:42:15.302346704 +0100
++++ buildroot-2020.11-b/package/Config.in	2021-02-10 02:42:15.306347147 +0100
 @@ -2384,6 +2384,7 @@
  	source "package/coreutils/Config.in"
  	source "package/cpuload/Config.in"
@@ -40,8 +40,8 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/crio/Config.in buildroot-
 +
 diff -uNr --no-dereference buildroot-2020.11-a/package/crio/crio.mk buildroot-2020.11-b/package/crio/crio.mk
 --- buildroot-2020.11-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-b/package/crio/crio.mk	2021-02-10 01:48:26.642646748 +0100
-@@ -0,0 +1,43 @@
++++ buildroot-2020.11-b/package/crio/crio.mk	2021-02-10 02:42:08.761622156 +0100
+@@ -0,0 +1,45 @@
 +################################################################################
 +#
 +# crio
@@ -71,6 +71,8 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/crio/crio.mk buildroot-20
 +
 +define CRIO_POST_INSTALL_TARGET_CONTRIBS
 +	$(INSTALL) -D -m 0644 $(@D)/contrib/sysconfig/crio $(TARGET_DIR)/contrib/sysconfig/crio
++	sed -i -e 's|/usr/local/bin|/usr/bin|' $(@D)/contrib/systemd/crio.service
++	sed -i -e 's|/usr/local/bin|/usr/bin|' $(@D)/contrib/systemd/crio-wipe.service
 +	$(INSTALL) -D -m 0644 $(@D)/contrib/systemd/crio.service $(TARGET_DIR)/lib/systemd/system/crio.service
 +	$(INSTALL) -D -m 0644 $(@D)/contrib/systemd/crio-shutdown.service $(TARGET_DIR)/lib/systemd/system/crio-shutdown.service
 +	$(INSTALL) -D -m 0644 $(@D)/contrib/systemd/crio-wipe.service $(TARGET_DIR)/lib/systemd/system/crio-wipe.service
