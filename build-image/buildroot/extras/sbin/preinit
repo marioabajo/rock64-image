@@ -1,0 +1,55 @@
+#!/bin/bash
+
+function try_mount()
+{
+	max=3
+	try=0
+	ret=1
+	while [ $try -le $max ]
+	do
+		mount $1
+		[ $? -eq 0 ] && break;
+		sleep 1
+		echo -ne "try $((++try))/$max $ret\r"
+	done
+}
+
+function wait_for_dev()
+{
+	max=5
+	try=0
+	while [ "${1:0:1}" == "/" ] && [ ! -e $1 ] && [ $((++try)) -le $max ]
+	do
+		echo -ne "waiting for $1 ($try/$max)\r"
+		sleep 1
+	done
+}
+
+function init_basic_fs()
+{
+	mount -t proc proc /proc
+	mount -t sysfs none /sys
+}
+
+echo "====== preinit start"
+
+modprobe phy_rockchip_inno_usb2
+modprobe phy_rockchip_inno_usb3
+modprobe dwc2
+modprobe dwc3
+modprobe dwc3_of_simple
+modprobe uas
+
+grep "x-preinit" /etc/fstab | while read dev dir fs opts
+do
+	echo "====== mounting $dir"
+	wait_for_dev $dev
+	try_mount $dir
+done
+
+read -p "Press any key during next 3s to open a bash interpreter..." -t 3 -n 1 key && init_basic_fs && bash -i
+
+echo "====== preinit end"
+
+exec /sbin/init
+
