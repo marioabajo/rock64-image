@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# Desc:
-# Generate ssh keys
-
-/usr/bin/ssh-keygen -A
-systemctl start sshd

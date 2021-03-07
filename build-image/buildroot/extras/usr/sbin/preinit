@@ -33,18 +33,23 @@ function init_basic_fs()
 
 echo "====== preinit start"
 
-modprobe phy_rockchip_inno_usb2
-modprobe phy_rockchip_inno_usb3
-modprobe dwc2
-modprobe dwc3
-modprobe dwc3_of_simple
-modprobe uas
+echo "======-- mount configfs"
 
-grep "x-preinit" /etc/fstab | while read dev dir fs opts
+# create /media tmpfs and mount configfs there
+mount -t tmpfs none /media -o size=10M
+mkdir /media/configfs
+
+# find configfs device using blkid
+CONFIGFS_DEV="$( blkid | awk '/PARTLABEL=\"configfs\"/ {sub(":","",$1); print $1}' )"
+mount "$CONFIGFS_DEV" /media/configfs
+
+# mount needed overlays
+for dir in etc usr root;
 do
-	echo "====== mounting $dir"
-	wait_for_dev $dev
-	try_mount $dir
+	echo "======-- mount overlay for /$dir"
+	mkdir -p /media/configfs/$dir
+	mkdir -p /media/configfs/workdir/$dir
+	mount -t overlay overlay $dir -o lowerdir=/$dir,workdir=/media/configfs/workdir/$dir,upperdir=/media/configfs/$dir
 done
 
 read -p "Press any key during next 3s to open a bash interpreter..." -t 3 -n 1 key && init_basic_fs && bash -i
