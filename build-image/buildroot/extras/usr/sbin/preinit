@@ -41,7 +41,7 @@ mkdir /media/configfs
 
 # find configfs device using blkid
 CONFIGFS_DEV="$( blkid | awk '/PARTLABEL=\"configfs\"/ {sub(":","",$1); print $1}' )"
-mount "$CONFIGFS_DEV" /media/configfs
+mount -t ext4 "$CONFIGFS_DEV" /media/configfs
 
 # mount needed overlays
 for dir in etc usr root;
@@ -54,6 +54,7 @@ done
 
 read -p "Press any key during next 3s to open a bash interpreter..." -t 3 -n 1 key && init_basic_fs && bash -i
 
+echo
 echo "====== preinit end"
 
 exec /sbin/init
