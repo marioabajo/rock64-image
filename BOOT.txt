@@ -1,0 +1,10 @@
+Boot process scheme:
+
+Kernel boot  |_> root=PARTLABEL=rootfs
+             |_> init=/sbin/preinit
+             |   |_> mount PARTLABEL=configfs  ->  mtdblkXp4
+             |   |_> mount overlayfs (configfs as backend) for /etc /usr /root
+             \_> init (systemd)
+                 |_> mount PARTLABEL=overlayfs
+                 \_> mount overlayfs (overlayfs as backend) for /home /var
+

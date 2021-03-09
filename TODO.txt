@@ -1,0 +1,56 @@
+Pending tasks:
+- Boot process:
+  * add posibility to change boot params
+  * solve mount issue in pre-init
+  * Evaluate ignition for initial configuration
+- Offer configuration menu for first use
+  * change/set core password
+  * select partition for /var/lib/containers and other important mount points (/var/log?)
+  * reset to fabric
+  * update firmware
+  * roll back firmware update
+  * set ntp / date
+- Add random password to core user and present it in issue
+- Analize auto-rollback on boot in case of failure
+  * uboot script change partition to previous, so next reboot will automatically boot into previous firmware
+  * uboot removes that script so this action only happens once per update attempt
+  * systemd boots and as a last step (if eveything is going well) is to set the firmware to the last one (undo uboot script action)
+  * systemd disable/remove the previous job, so it only happens once per update attempt
+- setup chrony sync
+- test jumbo frames
+-[ 2400.193491] reboot: Power down
+ [ 2400.194259] rk3x-i2c ff160000.i2c: unexpected irq in STOP: 0x10
+ [ 2401.193824] rk3x-i2c ff160000.i2c: timeout, ipd: 0x00, state: 4
+ [ 2401.194366] rk808 1-0018: Failed to shutdown device!
+ [ 2401.194826] Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000000
+ [ 2401.195515] CPU: 0 PID: 1 Comm: systemd-shutdow Not tainted 5.10.14 #1
+ [ 2401.196097] Hardware name: Pine64 Rock64 (DT)
+ [ 2401.196492] Call trace:
+ [ 2401.196735]  dump_backtrace+0x0/0x1e0
+ [ 2401.197079]  show_stack+0x20/0x70
+ [ 2401.197392]  dump_stack+0xd0/0x12c
+ [ 2401.197709]  panic+0x168/0x368
+ [ 2401.197996]  do_exit+0xa24/0xa50
+ [ 2401.198299]  __do_sys_reboot+0x164/0x230
+ [ 2401.198660]  __arm64_sys_reboot+0x2c/0x40
+ [ 2401.199034]  el0_svc_common.constprop.0+0x6c/0x140
+ [ 2401.199473]  do_el0_svc+0x2c/0xa0
+ [ 2401.199781]  el0_svc+0x20/0x30
+ [ 2401.200065]  el0_sync_handler+0xb0/0xc0
+ [ 2401.200417]  el0_sync+0x174/0x180
+ [ 2401.200724] Kernel Offset: disabled
+ [ 2401.201044] CPU features: 0x0240002,20002004
+ [ 2401.201429] Memory Limit: none
+ [ 2401.201732] ---[ end Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000000 ]---
+
+# Useful notes
+- sync ntp:
+  chronyd -q 'server 0.europe.pool.ntp.org iburst'
+
+- build with just one git clone (following attempts of running the pod will not call git clone):
+  docker run --name=rock64-image-builder --env UPDATE_CONFIG=0 --mount type=bind,source="$(pwd)"/output,target=/home/build/buildroot debian-buildroot:latest
+
+- container test:
+  podman pull docker.io/debian
+  podman run -ti debian /bin/bash
+
