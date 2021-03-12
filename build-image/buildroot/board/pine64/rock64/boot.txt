@@ -1,0 +1,22 @@
+part number ${devtype} ${devnum} configfs configfs_part
+
+### If exists update.scr in configfs part, run it first
+if test -e ${devtype} ${devnum}:${configfs_part} update.scr
+then
+	load ${devtype} ${devnum}:${configfs_part} 200000 update.scr
+	source 200000
+fi
+
+### If exists a custom boot script in configfs part run it
+if test -e ${devtype} ${devnum}:${configfs_part} boot.scr
+then
+	load ${devtype} ${devnum}:${configfs_part} 200000 boot.scr
+	source 200000
+fi
+
+### default booting
+echo "Booting Linux kernel..."
+setenv bootargs console=ttyS2,1500000n8 root=PARTLABEL=rootfs ro rootwait init=/sbin/preinit
+load ${devtype} ${devnum}:${distro_bootpart} 5000000 /boot/rk3328-rock64.dtb
+load ${devtype} ${devnum}:${distro_bootpart} 6000000 /boot/Image
+booti 6000000 - 5000000

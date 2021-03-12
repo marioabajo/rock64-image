@@ -1,10 +1,15 @@
 Boot process scheme:
 
+Uboot        |_> if <configfs_part>/update.scr exist, run it. This is a auto-roll-back script to prevent faulty updates
+             |_> if <configfs_part>/boot.scr exist, run it. This is for custom boot options and kernel params
+             |_> load and run kernel
+
 Kernel boot  |_> root=PARTLABEL=rootfs
              |_> init=/sbin/preinit
-             |   |_> mount PARTLABEL=configfs  ->  mtdblkXp4
+             |   |_> mount PARTLABEL=configfs  in /media/configfs
              |   |_> mount overlayfs (configfs as backend) for /etc /usr /root
              \_> init (systemd)
                  |_> mount PARTLABEL=overlayfs
-                 \_> mount overlayfs (overlayfs as backend) for /home /var
+                 |_> mount overlayfs (overlayfs as backend) for /home /var  (optional)
+                 |_> validate update service. This will consolidate new images and disable the auto-roll-back feature
 

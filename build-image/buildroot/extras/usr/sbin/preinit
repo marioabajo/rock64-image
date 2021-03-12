@@ -36,6 +36,7 @@ echo "====== preinit start"
 echo "======-- mount configfs"
 
 # create /media tmpfs and mount configfs there
+init_basic_fs
 mount -t tmpfs none /media -o size=10M
 mkdir /media/configfs
 
@@ -52,7 +53,7 @@ do
 	mount -t overlay overlay $dir -o lowerdir=/$dir,workdir=/media/configfs/workdir/$dir,upperdir=/media/configfs/$dir
 done
 
-read -p "Press any key during next 3s to open a bash interpreter..." -t 3 -n 1 key && init_basic_fs && bash -i
+read -p "Press any key during next 3s to open a bash interpreter..." -t 3 -n 1 key && bash -i
 
 echo
 echo "====== preinit end"

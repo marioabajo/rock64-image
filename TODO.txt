@@ -1,7 +1,6 @@
 Pending tasks:
 - Boot process:
   * add posibility to change boot params
-  * solve mount issue in pre-init
   * Evaluate ignition for initial configuration
 - Offer configuration menu for first use
   * change/set core password
