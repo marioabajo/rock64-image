@@ -16,7 +16,7 @@ fi
 
 ### default booting
 echo "Booting Linux kernel..."
-setenv bootargs console=ttyS2,1500000n8 root=PARTLABEL=rootfs ro rootwait init=/sbin/preinit
+env exists bootargs || setenv bootargs console=ttyS2,1500000n8 root=PARTLABEL=rootfs ro rootwait init=/sbin/preinit
 load ${devtype} ${devnum}:${distro_bootpart} 5000000 /boot/rk3328-rock64.dtb
 load ${devtype} ${devnum}:${distro_bootpart} 6000000 /boot/Image
 booti 6000000 - 5000000
