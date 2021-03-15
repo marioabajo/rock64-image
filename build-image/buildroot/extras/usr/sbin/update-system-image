@@ -1,0 +1,91 @@
+#!/bin/bash
+# update-system-image  v0.1
+# Steps done by this script:
+# - download de image in a temporary place
+# - verify hash
+# - look for an available partition
+#   * if not, create a new one
+# - write contents to the partition
+# - set bootable flag to the partition
+# - rename current "rootfs" partition to "rootfs-old"
+# - rename new image partition to "rootfs"
+# - unset bootable flag on "rootfs-old"
+
+
+set -e
+
+## config parameters
+repo="http://192.168.0.60:8080/"
+prefix="rock64-system-image-"
+version="latest"
+partsize="524"  # In Megabytes (MiB), give some more than current image size
+
+## variables
+imagename="${prefix}${version}.img.gz"
+device="/dev/$( lsblk -no pkname $( mount | awk '/ \/ / {print $1}' ) )"
+
+## Download file and do checksum
+echo "- Downloading image ${imagename}..."
+cd /tmp
+curl -O "${repo}/${imagename}"
+curl -O "${repo}/${imagename}.sha256"
+cat "${imagename}.sha256" | sha256sum -c
+
+## Find (or create) a partition for the new image
+echo "- Search for partition..."
+
+# get a partition list
+partlist=$( blkid "${device}"* | awk '/PARTLABEL=\"rootfs/ { \
+	sub(":","",$1); \
+	for (i=2; i<NF; i++) \
+	{ \
+		if ($i ~ /PARTLABEL=/) \
+		{ \
+			label=$i; \
+			break; \
+		} \
+	} \
+	gsub("\"","",label); \
+	print $1,substr(label,11); \
+}' )
+
+# if there is a "rootfs-old" partition already created use it
+part=$( echo "$partlist" | awk '/rootfs-old/ {print $1}' )
+partnum=${part: -1}
+
+# if there is no available partition, append a new one
+if [ -z "$part" ]
+then
+	echo "  No partition available, creating a new one..."
+	partstart="$( parted ${device} -s "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1);end=$3}}END{print int(end)}' )"
+	partend="$(( partstart + partsize ))"
+	parted ${device} -s -a optimal "mkpart primary ext4 $partstart $partend"
+	partnum="$( parted ${device} -s "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1)}}END{print last}' )"
+	separator="$( [[ "${device: -1}" =~ [0-9] ]] && echo p )"
+	part=${device}${separator}${partnum}
+fi
+
+## Write contents to partition
+echo "- Copying ${imagename} to ${part}..."
+zcat "${imagename}" > "${part}"
+echo "  done"
+
+## Set bootable flag on new partition
+echo "- Seting bootable flag on new partition..."
+parted ${device} -s "set ${partnum} legacy_boot"
+
+## Rename partitions rootfs <-> rootfs-old
+echo "- Renaming partitions rootfs <-> rootfs-old..."
+current_partnum=$( echo "$partlist" | awk '/rootfs$/ {print substr($1,length($1),1)}' )
+parted ${device} -s "name ${partnum} rootfs"
+parted ${device} -s "name ${current_partnum} rootfs-old"
+
+## Unset bootable flag on currently running partition
+echo "- Unsetting bootable flag on currently running rootfs"
+parted ${device} -s "set ${current_partnum} legacy_boot off"
+
+## Reboot
+echo "- Rebooting in 5 seconds..."
+sleep 5
+reboot
+

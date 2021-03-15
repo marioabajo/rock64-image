@@ -1,6 +1,5 @@
 Pending tasks:
 - Boot process:
-  * add posibility to change boot params
   * Evaluate ignition for initial configuration
 - Offer configuration menu for first use
   * change/set core password
@@ -9,7 +8,7 @@ Pending tasks:
   * update firmware
   * roll back firmware update
   * set ntp / date
-- Add random password to core user and present it in issue
+- Set a default one time password for user core
 - Analize auto-rollback on boot in case of failure
   * uboot script change partition to previous, so next reboot will automatically boot into previous firmware
   * uboot removes that script so this action only happens once per update attempt

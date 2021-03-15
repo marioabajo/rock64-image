@@ -8,5 +8,6 @@ cat $BINARIES_DIR/u-boot-tpl.img $BINARIES_DIR/u-boot-spl.bin > $BINARIES_DIR/u-
 
 # New boot system using boot script
 $MKIMAGE -A arm64 -O linux -T script -C none -a 0 -e 0 -n "boot script" -d boot.txt boot.scr
+install -m 0644 -D $BOARD_DIR/boot.txt $TARGET_DIR/boot/boot.txt
 install -m 0644 -D $BOARD_DIR/boot.scr $TARGET_DIR/boot/boot.scr
 # previous system # install -m 0644 -D $BOARD_DIR/extlinux.conf $TARGET_DIR/boot/extlinux/extlinux.conf
