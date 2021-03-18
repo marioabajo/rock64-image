@@ -14,8 +14,6 @@ Pending tasks:
   * uboot removes that script so this action only happens once per update attempt
   * systemd boots and as a last step (if eveything is going well) is to set the firmware to the last one (undo uboot script action)
   * systemd disable/remove the previous job, so it only happens once per update attempt
-- setup chrony sync
-- test jumbo frames
 -[ 2400.193491] reboot: Power down
  [ 2400.194259] rk3x-i2c ff160000.i2c: unexpected irq in STOP: 0x10
  [ 2401.193824] rk3x-i2c ff160000.i2c: timeout, ipd: 0x00, state: 4

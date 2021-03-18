@@ -1,5 +1,5 @@
 #!/bin/bash
-# update-system-image  v0.1
+# update-system-image  v0.2
 # Steps done by this script:
 # - download de image in a temporary place
 # - verify hash
@@ -14,11 +14,14 @@
 
 set -e
 
-## config parameters
-repo="http://192.168.0.60:8080/"
-prefix="rock64-system-image-"
-version="latest"
-partsize="524"  # In Megabytes (MiB), give some more than current image size
+## load config parameters
+. /etc/sysconfig/update-system-image.cfg
+
+if [ -z "$repo" ] || [ -z "$prefix" ] || [ -z "$version" ] || [ -z "$partsize" ]
+then
+	echo "ERROR: empty configuration parameter found in /etc/sysconfig/update-system-image.cfg"
+	exit -1
+fi
 
 ## variables
 imagename="${prefix}${version}.img.gz"
@@ -27,8 +30,8 @@ device="/dev/$( lsblk -no pkname $( mount | awk '/ \/ / {print $1}' ) )"
 ## Download file and do checksum
 echo "- Downloading image ${imagename}..."
 cd /tmp
-curl -O "${repo}/${imagename}"
-curl -O "${repo}/${imagename}.sha256"
+curl -# -O "${repo}/${imagename}"
+curl -# -O "${repo}/${imagename}.sha256"
 cat "${imagename}.sha256" | sha256sum -c
 
 ## Find (or create) a partition for the new image
@@ -67,7 +70,7 @@ fi
 
 ## Write contents to partition
 echo "- Copying ${imagename} to ${part}..."
-zcat "${imagename}" > "${part}"
+pv "${imagename}" | gunzip > "${part}"
 echo "  done"
 
 ## Set bootable flag on new partition

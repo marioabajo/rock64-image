@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="led-0", ATTR{trigger}="activity"
+ACTION=="add", SUBSYSTEM=="leds", KERNEL=="led-1", ATTR{trigger}="usb-host"
