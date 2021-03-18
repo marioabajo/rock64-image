@@ -1,0 +1,10 @@
+First step:  "update-system-image.sh"
+ - download de image in a temporary place
+ - verify hash
+ - look for an available partition
+   * if not, create a new one
+ - write contents to the partition
+ - set bootable flag to the partition
+ - rename current "rootfs" partition to "rootfs-old"
+ - rename new image partition to "rootfs"
+ - unset bootable flag on "rootfs-old"

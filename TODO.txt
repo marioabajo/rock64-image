@@ -1,4 +1,12 @@
 Pending tasks:
+- Add pam ssh config
+- Add password expiration control in pam
+- Add default bash prompt
+- Add motd issue and issue.net
+- Add watchdog at boot
+- Try move from ext4 image to squashfs image (making root modification very difficult)
+- Install sliprp4netns for podman rootless
+- explore adding selinux
 - Boot process:
   * Evaluate ignition for initial configuration
 - Offer configuration menu for first use
@@ -8,7 +16,6 @@ Pending tasks:
   * update firmware
   * roll back firmware update
   * set ntp / date
-- Set a default one time password for user core
 - Analize auto-rollback on boot in case of failure
   * uboot script change partition to previous, so next reboot will automatically boot into previous firmware
   * uboot removes that script so this action only happens once per update attempt
@@ -49,4 +56,7 @@ Pending tasks:
 - container test:
   podman pull docker.io/debian
   podman run -ti debian /bin/bash
+
+- provisional prompt
+  PS1="\[\e[0;37m\][\[\e[1;31m\]\@\[\e[0;37m\]] \[\e[0;32m\]\u@\h \[\e[0;37m\][\[\e[1;34m\]\w\[\e[0;37m\]] \[\e[0;32m\]\$ \[\e[0m\]"
 
