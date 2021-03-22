@@ -1,4 +1,5 @@
 Pending tasks:
+- add login on tty1 -> screen is working
 - Add motd issue and issue.net
 - Add watchdog at boot
 - Try move from ext4 image to squashfs image (making root modification very difficult)
@@ -54,4 +55,4 @@ Pending tasks:
 - container test:
   podman pull docker.io/debian
   podman run -ti debian /bin/bash
-
+  podman run --network=host --privileged --volume /dev:/dev --volume /sys:/sys --volume /run:/run -ti debian-xorg /bin/bash

@@ -51,7 +51,7 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/podman/podman.mk buildroo
 +
 +# other available tags: libdm_no_deferred_remove
 +PODMAN_TAGS = cgo exclude_graphdriver_devicemapper
-+PODMAN_DEPENDENCIES = libgpgme conmon
++PODMAN_DEPENDENCIES = libgpgme conmon btrfs-progs
 +
 +# Add btrfs support
 +#ifeq ($(BR2_PACKAGE_BTRFS_PROGS),y)
@@ -69,7 +69,7 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/podman/podman.mk buildroo
 +# Add systemd support
 +ifeq ($(BR2_PACKAGE_SYSTEMD),y)
 +PODMAN_TAGS += systemd
-+#PODMAN_DEPENDENCIES += libsystemd
++PODMAN_DEPENDENCIES += systemd
 +endif
 +
 +# Add selinux support
