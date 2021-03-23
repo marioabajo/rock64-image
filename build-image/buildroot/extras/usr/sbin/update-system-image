@@ -60,7 +60,7 @@ partnum=${part: -1}
 if [ -z "$part" ]
 then
 	echo "  No partition available, creating a new one..."
-	partstart="$( printf "fix\n" | parted ${device} "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1);end=$3}}END{print int(end)}' )"
+	partstart="$( printf "fix\n" | parted ---pretend-input-tty ${device} "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1);end=$3}}END{print int(end)}' )"
 	partend="$(( partstart + partsize ))"
 	parted ${device} -s -a optimal "mkpart primary ext4 $partstart $partend"
 	partnum="$( parted ${device} -s "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1)}}END{print last}' )"
