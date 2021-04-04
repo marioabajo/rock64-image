@@ -1,0 +1,10 @@
+--- a/package/python/python.mk	2020-12-02 23:21:32.000000000 +0100
++++ b/package/python/python.mk	2021-03-23 02:21:03.154064313 +0100
+@@ -42,6 +42,7 @@
+ # try to communicate over the network during the build.
+ HOST_PYTHON_CONF_ENV += \
+ 	LDFLAGS="$(HOST_LDFLAGS) -Wl,--enable-new-dtags" \
++	CFLAGS="-IInclude" \
+ 	ac_cv_prog_HAS_HG=/bin/false \
+ 	ac_cv_prog_SVNVERSION=/bin/false
+
