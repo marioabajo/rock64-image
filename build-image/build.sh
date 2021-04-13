@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERS=2020.11
+VERS=2021.02.1
 
 # Deploy buildroot framework
 if [ ! -e buildroot/Makefile ]; then
