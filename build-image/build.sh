@@ -1,6 +1,10 @@
 #!/bin/bash
 
-VERS=2021.02.1
+# If buildroot version is not set, default to this one:
+[ -z $VERS ] && VERS=2021.02.1
+
+# If no build command is supplied, default to build everything:
+[ -z $RUNCMD ] && RUNCMD="make"
 
 # Deploy buildroot framework
 if [ ! -e buildroot/Makefile ]; then
@@ -33,4 +37,4 @@ fi
 cd buildroot
 make oldconfig
 make source
-make
+$RUNCMD

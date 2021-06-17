@@ -1,16 +1,21 @@
 Pending tasks:
+- modify the update script : add self-update, adapt to current image and update kernel
 - add login on tty1 -> screen is working
 - Add motd issue and issue.net
 - Add watchdog at boot
+- Add kdump partition
+- Add LUKS
 - Try move from ext4 image to squashfs image (making root modification very difficult)
 - Install sliprp4netns for podman rootless
+- Install buildah
+- Install skopeo
 - explore adding selinux
 - enable sar logging
 - Boot process:
   * Evaluate ignition for initial configuration
 - Offer configuration menu for first use
   * change/set core password
-  * select partition for /var/lib/containers and other important mount points (/var/log?)
+  * sub-menu that posibilites chossing directories and overlay with partitions or directories (/var/log, /var/lib/containers, /home, /root, etc...)
   * reset to fabric
   * update firmware
   * roll back firmware update
