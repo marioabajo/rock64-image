@@ -5,7 +5,7 @@ FROM debian:buster
 ENV UPDATE_CONFIG=1
 
 # Set buildroot version
-ENV VERS=2021.02.1
+ENV VERS=2021.02.3
 
 # Set build command/s
 ENV RUNCMD="make"
