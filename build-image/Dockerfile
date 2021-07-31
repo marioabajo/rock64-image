@@ -2,7 +2,7 @@ FROM debian:buster
 
 ### Config variables:
 # do a "git clone" eveytime the container run
-ENV UPDATE_CONFIG=1
+ENV UPDATE_CONFIG=0
 
 # Set buildroot version
 ENV VERS=2021.02.3

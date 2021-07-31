@@ -9,16 +9,14 @@ set -e
 
 # Deploy buildroot framework
 if [ ! -e buildroot/Makefile ]; then
-  wget https://buildroot.org/downloads/buildroot-"$VERS".tar.gz; \
-  tar -zxpvf buildroot-"$VERS".tar.gz; \
-  cp -a buildroot-"$VERS"/. buildroot
-  rm -rf buildroot-"$VERS"
+	wget https://buildroot.org/downloads/buildroot-"$VERS".tar.gz; \
+	tar -zxpvf buildroot-"$VERS".tar.gz; \
+	mv buildroot-"$VERS"/. buildroot
 fi
 
 if [ "$UPDATE_CONFIG" == 1 ] || [ ! -e "buildroot/.git_clone" ]; then
+	[ -d "rock64-image" ] && rm -rf rock64-image
 	git clone https://github.com/marioabajo/rock64-image
-	git checkout master
-	git pull
 	touch buildroot/.git_clone
 fi
 
@@ -34,8 +32,7 @@ if [ ! -e "buildroot/.toolchain-rockore" ]; then
 	echo "###### Toolchain generated, copying...."
 	TOOLCHAIN_NAME="toolchain-rockore-$(date +%Y%m%d%H%M).tar.gz"
 	cd output/host
-	tar -czpf "$TOOLCHAIN_NAME" .
-	cp "$TOOLCHAIN_NAME" ../
+	tar -czpf ../"$TOOLCHAIN_NAME" .
 	cd ../../
 	mkdir toolchain-rockore
 	cp -a output/host/. toolchain-rockore
@@ -59,6 +56,7 @@ if [ ! -e "buildroot/.buildroot_board_env" ]; then
 		cd ..
 	fi
 	rm -rf rock64-image
+	touch buildroot/.buildroot_board_env
 fi
 
 # Start the board build process
