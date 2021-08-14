@@ -14,9 +14,12 @@ then
 	source 200000
 fi
 
+### Find bootfs part
+part number ${devtype} ${devnum} bootfs bootfs_part
+
 ### default booting
 echo "Booting Linux kernel..."
-env exists bootargs || setenv bootargs console=ttyS2,1500000n8 rootfstype=squashfs root=PARTLABEL=rootfs ro rootwait init=/sbin/preinit
-load ${devtype} ${devnum}:${distro_bootpart} 5000000 /rk3328-rock64.dtb
-load ${devtype} ${devnum}:${distro_bootpart} 6000000 /Image
+env exists bootargs || setenv bootargs console=ttyS2,1500000n8 rootfstype=squashfs root=PARTLABEL=rootfs ethaddr=${ethaddr} serial=${serial#} ro rootwait init=/sbin/preinit
+load ${devtype} ${devnum}:${bootfs_part} 5000000 /rk3328-rock64.dtb
+load ${devtype} ${devnum}:${bootfs_part} 6000000 /Image
 booti 6000000 - 5000000
