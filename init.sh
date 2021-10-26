@@ -8,5 +8,5 @@ docker build build-image -t debian-buildroot:latest
 [ -d output ] || mkdir output
 
 # build system
-docker run --name=rock64-image-builder --mount type=bind,source="$(pwd)"/output,target=/home/build/buildroot debian-buildroot:latest
+docker run --name=rock64-image-builder -v "$(pwd)"/output:/home/builder/build debian-buildroot:latest
 

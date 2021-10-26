@@ -1,29 +1,19 @@
 #!/bin/bash
 set -e
 
-# If buildroot version is not set, default to this one:
-[ -z $VERS ] && VERS=2021.02.3
-
-# If no build command is supplied, default to build everything:
-[ -z $RUNCMD ] && RUNCMD="make"
-
 # Deploy buildroot framework
-if [ ! -e buildroot/Makefile ]; then
-	wget https://buildroot.org/downloads/buildroot-"$VERS".tar.gz; \
-	tar -zxpvf buildroot-"$VERS".tar.gz; \
-	mv buildroot-"$VERS"/. buildroot
+if [ ! -e buildroot-"$VERS".tar.gz ]; then
+	wget https://buildroot.org/downloads/buildroot-"$VERS".tar.gz;
 fi
-
-if [ "$UPDATE_CONFIG" == 1 ] || [ ! -e "buildroot/.git_clone" ]; then
-	[ -d "rock64-image" ] && rm -rf rock64-image
-	git clone https://github.com/marioabajo/rock64-image
-	touch buildroot/.git_clone
+if [ ! -e buildroot/Makefile ]; then
+	tar -zxpvf buildroot-"$VERS".tar.gz;
+	ln -s buildroot-"$VERS" buildroot
 fi
 
 # Generate the toolchain
 if [ ! -e "buildroot/.toolchain-rockore" ]; then
 	echo "###### Generating Toolchain..."
-	cp -av rock64-image/build-image/buildroot/buildroot-toolchain.config buildroot/.config
+	cp -av rock64-image/buildroot-setup/buildroot-toolchain.config buildroot/.config
 	cd buildroot
 	make oldconfig
 	make source
@@ -46,8 +36,8 @@ fi
 # Download from repository the latest configuration and patches
 if [ ! -e "buildroot/.buildroot_board_env" ]; then
 	echo "###### Setting up buildroot environment..."
-	cp -av rock64-image/build-image/buildroot/. buildroot
-	cp -av rock64-image/build-image/buildroot/buildroot.config buildroot/.config
+	cp -av rock64-image/buildroot-setup/. buildroot
+	cp -av rock64-image/buildroot-setup/buildroot.config buildroot/.config
 	if [ -e buildroot/patches ] && [ ! -e buildroot/patches/.applied ]; then
 		cd buildroot
 		for p in patches/*; do
@@ -67,3 +57,4 @@ if [ -e "buildroot/.buildroot_board_env" ]; then
 	make source
 	$RUNCMD
 fi
+
