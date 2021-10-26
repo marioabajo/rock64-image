@@ -45,7 +45,6 @@ if [ ! -e "buildroot/.buildroot_board_env" ]; then
 		done && touch patches/.applied
 		cd ..
 	fi
-	rm -rf rock64-image
 	touch buildroot/.buildroot_board_env
 fi
 
