@@ -17,15 +17,11 @@ if [ ! -e "buildroot/.toolchain-rockore" ]; then
 	cd buildroot
 	make oldconfig
 	make source
-	make toolchain
+	make sdk
 
 	echo "###### Toolchain generated, copying...."
-	TOOLCHAIN_NAME="toolchain-rockore-$(date +%Y%m%d%H%M).tar.gz"
-	cd output/host
-	tar -czpf ../"$TOOLCHAIN_NAME" .
-	cd ../../
-	mkdir toolchain-rockore
-	cp -a output/host/. toolchain-rockore
+	cp output/images/aarch64-rockore-linux-gnu_sdk-buildroot.tar.gz .
+	tar -zxpf aarch64-rockore-linux-gnu_sdk-buildroot.tar.gz
 
 	echo "###### Cleaning buildroot environment..."
 	make clean
