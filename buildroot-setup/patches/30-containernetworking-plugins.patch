@@ -1,7 +1,7 @@
-diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2021-02-10 02:25:12.596913761 +0100
-+++ buildroot-2020.11-b/package/Config.in	2021-02-10 02:25:12.600914205 +0100
-@@ -1682,6 +1682,7 @@
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
+--- buildroot-2021.08.1-a/package/Config.in	2021-10-31 01:06:15.429011627 +0200
++++ buildroot-2021.08.1-b/package/Config.in	2021-10-31 01:06:15.433011984 +0200
+@@ -1733,6 +1733,7 @@
  	source "package/c-ares/Config.in"
  	source "package/canfestival/Config.in"
  	source "package/cgic/Config.in"
@@ -9,9 +9,9 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.
  	source "package/cppzmq/Config.in"
  	source "package/curlpp/Config.in"
  	source "package/czmq/Config.in"
-diff -uNr --no-dereference buildroot-2020.11-a/package/containernetworking-plugins/Config.in buildroot-2020.11-b/package/containernetworking-plugins/Config.in
---- buildroot-2020.11-a/package/containernetworking-plugins/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-b/package/containernetworking-plugins/Config.in	2020-12-18 00:54:40.618792724 +0100
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plugins/Config.in buildroot-2021.08.1-b/package/containernetworking-plugins/Config.in
+--- buildroot-2021.08.1-a/package/containernetworking-plugins/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/containernetworking-plugins/Config.in	2020-12-18 00:54:40.618792724 +0100
 @@ -0,0 +1,16 @@
 +config BR2_PACKAGE_CONTAINERNETWORKING_PLUGINS
 +	bool "containernetworking-plugins"
@@ -29,9 +29,9 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/containernetworking-plugi
 +
 +	  https://github.com/containernetworking/plugins
 +
-diff -uNr --no-dereference buildroot-2020.11-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2020.11-b/package/containernetworking-plugins/containernetworking-plugins.mk
---- buildroot-2020.11-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-b/package/containernetworking-plugins/containernetworking-plugins.mk	2020-12-22 02:13:08.161772511 +0100
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk
+--- buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk	2020-12-22 02:13:08.161772511 +0100
 @@ -0,0 +1,29 @@
 +################################################################################
 +#

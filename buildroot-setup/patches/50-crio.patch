@@ -1,17 +1,17 @@
-diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2021-02-12 00:53:16.279970359 +0100
-+++ buildroot-2020.11-b/package/Config.in	2021-02-12 00:53:16.283970745 +0100
-@@ -2384,6 +2384,7 @@
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
+--- buildroot-2021.08.1-a/package/Config.in	2021-10-31 01:06:15.985061123 +0200
++++ buildroot-2021.08.1-b/package/Config.in	2021-10-31 01:06:15.989061479 +0200
+@@ -2450,6 +2450,7 @@
+ 	source "package/containerd/Config.in"
  	source "package/coreutils/Config.in"
  	source "package/cpuload/Config.in"
- 	source "package/cri-tools/Config.in"
 +	source "package/crio/Config.in"
+ 	source "package/cri-tools/Config.in"
  	source "package/daemon/Config.in"
  	source "package/dc3dd/Config.in"
- 	source "package/dcron/Config.in"
-diff -uNr --no-dereference buildroot-2020.11-a/package/crio/Config.in buildroot-2020.11-b/package/crio/Config.in
---- buildroot-2020.11-a/package/crio/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-b/package/crio/Config.in	2020-12-22 02:23:45.443584937 +0100
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/Config.in buildroot-2021.08.1-b/package/crio/Config.in
+--- buildroot-2021.08.1-a/package/crio/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/crio/Config.in	2020-12-22 02:23:45.443584937 +0100
 @@ -0,0 +1,25 @@
 +config BR2_PACKAGE_CRIO
 +	bool "cri-o"
@@ -38,9 +38,9 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/crio/Config.in buildroot-
 +
 +	  https://github.com/cri-o/cri-o
 +
-diff -uNr --no-dereference buildroot-2020.11-a/package/crio/crio.mk buildroot-2020.11-b/package/crio/crio.mk
---- buildroot-2020.11-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-b/package/crio/crio.mk	2021-02-12 00:53:08.731240744 +0100
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/crio.mk buildroot-2021.08.1-b/package/crio/crio.mk
+--- buildroot-2021.08.1-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/crio/crio.mk	2021-02-12 00:53:08.731240744 +0100
 @@ -0,0 +1,45 @@
 +################################################################################
 +#

@@ -1,17 +1,17 @@
-diff -uNr --no-dereference buildroot-2020.11-a/package/Config.in buildroot-2020.11-b/package/Config.in
---- buildroot-2020.11-a/package/Config.in	2020-12-02 23:21:32.000000000 +0100
-+++ buildroot-2020.11-b/package/Config.in	2021-02-10 02:25:12.044852381 +0100
-@@ -2379,6 +2379,7 @@
- 	source "package/bubblewrap/Config.in"
- 	source "package/cgroupfs-mount/Config.in"
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
+--- buildroot-2021.08.1-a/package/Config.in	2021-10-31 00:51:56.864026605 +0200
++++ buildroot-2021.08.1-b/package/Config.in	2021-10-31 01:06:14.804956075 +0200
+@@ -2448,6 +2448,7 @@
  	source "package/circus/Config.in"
-+	source "package/conmon/Config.in"
+ 	source "package/containerd/Config.in"
  	source "package/coreutils/Config.in"
++	source "package/conmon/Config.in"
  	source "package/cpuload/Config.in"
  	source "package/daemon/Config.in"
-diff -uNr --no-dereference buildroot-2020.11-a/package/conmon/Config.in buildroot-2020.11-b/package/conmon/Config.in
---- buildroot-2020.11-a/package/conmon/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-b/package/conmon/Config.in	2020-12-22 02:05:30.528328069 +0100
+ 	source "package/dc3dd/Config.in"
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/Config.in buildroot-2021.08.1-b/package/conmon/Config.in
+--- buildroot-2021.08.1-a/package/conmon/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/conmon/Config.in	2020-12-22 02:05:30.528328069 +0100
 @@ -0,0 +1,15 @@
 +config BR2_PACKAGE_CONMON
 +	bool "conmon"
@@ -28,9 +28,9 @@ diff -uNr --no-dereference buildroot-2020.11-a/package/conmon/Config.in buildroo
 +
 +	  https://github.com/containers/conmon
 +
-diff -uNr --no-dereference buildroot-2020.11-a/package/conmon/conmon.mk buildroot-2020.11-b/package/conmon/conmon.mk
---- buildroot-2020.11-a/package/conmon/conmon.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2020.11-b/package/conmon/conmon.mk	2020-12-22 02:05:30.532328434 +0100
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/conmon.mk buildroot-2021.08.1-b/package/conmon/conmon.mk
+--- buildroot-2021.08.1-a/package/conmon/conmon.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/conmon/conmon.mk	2020-12-22 02:05:30.532328434 +0100
 @@ -0,0 +1,32 @@
 +################################################################################
 +#
