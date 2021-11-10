@@ -40,11 +40,6 @@ if [ ! -e "buildroot/.buildroot_board_env" ]; then
 	cp -av rock64-image/buildroot-setup/. buildroot
 	cp -av rock64-image/buildroot-setup/buildroot.config buildroot/.config
 
-	# Extract toolchain
-	cd buildroot
-	tar -zxpf ../aarch64-rockore-linux-gnu_sdk-buildroot.tar.gz
-	cd ..
-
 	if [ -e buildroot/patches ] && [ ! -e buildroot/patches/.applied ]; then
 		cd buildroot
 		for p in patches/*; do
