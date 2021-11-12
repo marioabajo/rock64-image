@@ -5,8 +5,6 @@ Pending tasks:
 - Add watchdog at boot
 - Add kdump partition
 - Add LUKS
-- Try move from ext4 image to squashfs image (making root modification very difficult)
-- Install sliprp4netns for podman rootless
 - Install buildah
 - Install skopeo
 - explore adding selinux

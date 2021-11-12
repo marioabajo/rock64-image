@@ -1,9 +1,9 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-10-31 01:06:15.701035841 +0200
-+++ buildroot-2021.08.1-b/package/Config.in	2021-10-31 01:06:15.709036553 +0200
-@@ -2450,6 +2450,7 @@
- 	source "package/containerd/Config.in"
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:44.891298266 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:44.895298632 +0100
+@@ -2451,6 +2451,7 @@
  	source "package/coreutils/Config.in"
+ 	source "package/conmon/Config.in"
  	source "package/cpuload/Config.in"
 +	source "package/cri-tools/Config.in"
  	source "package/daemon/Config.in"
@@ -26,7 +26,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/cri-tools/Config.in bui
 +
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/cri-tools/cri-tools.mk buildroot-2021.08.1-b/package/cri-tools/cri-tools.mk
 --- buildroot-2021.08.1-a/package/cri-tools/cri-tools.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/cri-tools/cri-tools.mk	2020-12-19 19:09:00.769669059 +0100
++++ buildroot-2021.08.1-b/package/cri-tools/cri-tools.mk	2021-11-11 23:42:39.495498844 +0100
 @@ -0,0 +1,29 @@
 +################################################################################
 +#
@@ -34,7 +34,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/cri-tools/cri-tools.mk 
 +#
 +################################################################################
 +
-+CRI_TOOLS_VERSION = v1.19.0
++CRI_TOOLS_VERSION = v1.22.0
 +CRI_TOOLS_SITE = $(call github,kubernetes-sigs,cri-tools,$(CRI_TOOLS_VERSION))
 +
 +CRI_TOOLS_LICENSE = Apache-2.0

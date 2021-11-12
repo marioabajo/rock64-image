@@ -1,7 +1,7 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-10-31 01:06:15.108983141 +0200
-+++ buildroot-2021.08.1-b/package/Config.in	2021-10-31 01:06:15.112983497 +0200
-@@ -2491,6 +2491,7 @@
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:44.263240684 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:44.271241418 +0100
+@@ -2492,6 +2492,7 @@
  	source "package/openrc/Config.in"
  	source "package/openvmtools/Config.in"
  	source "package/pamtester/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-202
  	source "package/procps-ng/Config.in"
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/Config.in buildroot-2021.08.1-b/package/podman/Config.in
 --- buildroot-2021.08.1-a/package/podman/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/podman/Config.in	2020-12-18 02:03:40.763054949 +0100
++++ buildroot-2021.08.1-b/package/podman/Config.in	2021-10-31 02:38:58.530491304 +0200
 @@ -0,0 +1,20 @@
 +config BR2_PACKAGE_PODMAN
 +	bool "podman"
@@ -35,7 +35,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/Config.in buildr
 +
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/podman.mk buildroot-2021.08.1-b/package/podman/podman.mk
 --- buildroot-2021.08.1-a/package/podman/podman.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/podman/podman.mk	2021-03-21 02:29:29.658393714 +0100
++++ buildroot-2021.08.1-b/package/podman/podman.mk	2021-11-11 23:44:04.427447477 +0100
 @@ -0,0 +1,62 @@
 +################################################################################
 +#
@@ -43,7 +43,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/podman.mk buildr
 +#
 +################################################################################
 +
-+PODMAN_VERSION = v2.2.0
++PODMAN_VERSION = v3.4.1
 +PODMAN_SITE = $(call github,containers,podman,$(PODMAN_VERSION))
 +
 +PODMAN_LICENSE = Apache-2.0

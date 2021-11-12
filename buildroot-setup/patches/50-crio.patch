@@ -1,9 +1,9 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-10-31 01:06:15.985061123 +0200
-+++ buildroot-2021.08.1-b/package/Config.in	2021-10-31 01:06:15.989061479 +0200
-@@ -2450,6 +2450,7 @@
- 	source "package/containerd/Config.in"
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:45.199326505 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:45.207327239 +0100
+@@ -2451,6 +2451,7 @@
  	source "package/coreutils/Config.in"
+ 	source "package/conmon/Config.in"
  	source "package/cpuload/Config.in"
 +	source "package/crio/Config.in"
  	source "package/cri-tools/Config.in"
@@ -40,7 +40,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/Config.in buildroo
 +
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/crio.mk buildroot-2021.08.1-b/package/crio/crio.mk
 --- buildroot-2021.08.1-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/crio/crio.mk	2021-02-12 00:53:08.731240744 +0100
++++ buildroot-2021.08.1-b/package/crio/crio.mk	2021-11-11 23:43:11.145089731 +0100
 @@ -0,0 +1,45 @@
 +################################################################################
 +#
@@ -48,7 +48,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/crio.mk buildroot-
 +#
 +################################################################################
 +
-+CRIO_VERSION = v1.19.0
++CRIO_VERSION = v1.21.4
 +CRIO_SITE = $(call github,cri-o,cri-o,$(CRIO_VERSION))
 +
 +CRIO_LICENSE = Apache-2.0

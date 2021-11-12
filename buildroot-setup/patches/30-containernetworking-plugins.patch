@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-10-31 01:06:15.429011627 +0200
-+++ buildroot-2021.08.1-b/package/Config.in	2021-10-31 01:06:15.433011984 +0200
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:44.579269658 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:44.587270391 +0100
 @@ -1733,6 +1733,7 @@
  	source "package/c-ares/Config.in"
  	source "package/canfestival/Config.in"
@@ -31,7 +31,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plu
 +
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk
 --- buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk	2020-12-22 02:13:08.161772511 +0100
++++ buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk	2021-11-11 23:41:46.488177954 +0100
 @@ -0,0 +1,29 @@
 +################################################################################
 +#
@@ -39,7 +39,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plu
 +#
 +################################################################################
 +
-+CONTAINERNETWORKING_PLUGINS_VERSION = v0.9.0
++CONTAINERNETWORKING_PLUGINS_VERSION = v1.0.1
 +CONTAINERNETWORKING_PLUGINS_SITE = $(call github,containernetworking,plugins,$(CONTAINERNETWORKING_PLUGINS_VERSION))
 +
 +CONTAINERNETWORKING_PLUGINS_LICENSE = Apache-2.0
