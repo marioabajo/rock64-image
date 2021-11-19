@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:44.891298266 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:44.895298632 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-19 00:59:16.255627378 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:16.259627757 +0100
 @@ -2451,6 +2451,7 @@
  	source "package/coreutils/Config.in"
  	source "package/conmon/Config.in"

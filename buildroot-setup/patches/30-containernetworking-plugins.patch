@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:44.579269658 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:44.587270391 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-19 00:59:15.943597861 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:15.943597861 +0100
 @@ -1733,6 +1733,7 @@
  	source "package/c-ares/Config.in"
  	source "package/canfestival/Config.in"

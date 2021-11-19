@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:45.199326505 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:45.207327239 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-19 00:59:16.595659543 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:16.603660299 +0100
 @@ -2451,6 +2451,7 @@
  	source "package/coreutils/Config.in"
  	source "package/conmon/Config.in"
@@ -11,10 +11,11 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-202
  	source "package/dc3dd/Config.in"
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/Config.in buildroot-2021.08.1-b/package/crio/Config.in
 --- buildroot-2021.08.1-a/package/crio/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/crio/Config.in	2020-12-22 02:23:45.443584937 +0100
++++ buildroot-2021.08.1-b/package/crio/Config.in	2021-11-19 00:41:29.477749085 +0100
 @@ -0,0 +1,25 @@
 +config BR2_PACKAGE_CRIO
 +	bool "cri-o"
++	depends on BR2_PACKAGE_CRUN || BR2_PACKAGE_RUNC
 +	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
 +	depends on BR2_PACKAGE_HOST_GO_TARGET_CGO_LINKING_SUPPORTS
 +	depends on BR2_TOOLCHAIN_HAS_THREADS
@@ -24,7 +25,6 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/Config.in buildroo
 +	select BR2_PACKAGE_CONMON
 +	select BR2_PACKAGE_LIBGPGME
 +	select BR2_PACKAGE_LIBSECCOMP
-+	select BR2_PACKAGE_RUNC
 +	select BR2_PACKAGE_IPROUTE2
 +	select BR2_PACKAGE_IPTABLES
 +	select BR2_PACKAGE_UTIL_LINUX_NSENTER

@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-12 01:40:45.831384451 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-12 01:40:45.839385184 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2021-11-19 00:59:17.195716303 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:17.199716681 +0100
 @@ -2290,6 +2290,7 @@
  	source "package/shadowsocks-libev/Config.in"
  	source "package/shairport-sync/Config.in"
