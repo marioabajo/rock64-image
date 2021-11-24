@@ -1,0 +1,87 @@
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
+--- buildroot-2021.08.1-a/package/Config.in	2021-10-11 11:46:43.000000000 +0200
++++ buildroot-2021.08.1-b/package/Config.in	2021-11-24 01:43:15.763005095 +0100
+@@ -2512,6 +2512,7 @@
+ 	source "package/scrypt/Config.in"
+ 	source "package/sdbusplus/Config.in"
+ 	source "package/seatd/Config.in"
++	source "package/shadow/Config.in"
+ 	source "package/smack/Config.in"
+ 	source "package/start-stop-daemon/Config.in"
+ 	source "package/supervisor/Config.in"
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/Config.in buildroot-2021.08.1-b/package/shadow/Config.in
+--- buildroot-2021.08.1-a/package/shadow/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/shadow/Config.in	2021-11-23 02:14:23.902902863 +0100
+@@ -0,0 +1,50 @@
++config BR2_PACKAGE_SHADOW
++	bool "shadow tools"
++	depends on BR2_USE_MMU
++	select BR2_PACKAGE_LIBXSLT
++	select BR2_PACKAGE_LIBSEMANAGE
++	help
++	  Tools for managing users and groups.
++	  This includes tools like:
++	    - chage
++	    - check_subid_range
++	    - chfn
++	    - chgpasswd
++	    - chpasswd
++	    - chsh
++	    - expiry
++	    - faillog
++	    - free_subid_range
++	    - get_subid_owners
++	    - getsubids
++	    - gpasswd
++	    - groupadd
++	    - groupdel
++	    - groupmems
++	    - groupmod
++	    - groups
++	    - grpck
++	    - grpconv
++	    - grpunconv
++	    - id
++	    - lastlog
++	    - login
++	    - logoutd
++	    - newgidmap
++	    - newgrp
++	    - new_subid_range
++	    - newuidmap
++	    - newusers
++	    - nologin
++	    - passwd
++	    - pwck
++	    - pwconv
++	    - pwunconv
++	    - su
++	    - sulogin
++	    - useradd
++	    - userdel
++	    - usermod
++	    - vipw
++
++	  https://github.com/shadow-maint/shadow
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/shadow.mk buildroot-2021.08.1-b/package/shadow/shadow.mk
+--- buildroot-2021.08.1-a/package/shadow/shadow.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/shadow/shadow.mk	2021-11-24 01:19:49.594823298 +0100
+@@ -0,0 +1,18 @@
++################################################################################
++#
++# the Shadow Password Suite
++#
++################################################################################
++
++SHADOW_VERSION = 4.9
++SHADOW_SITE = $(call github,shadow-maint,shadow,$(SHADOW_VERSION))
++
++SHADOW_LICENSE = Artistic-1.0-Perl
++SHADOW_LICENSE_FILES = COPYING
++
++SHADOW_CONF_DEPENDENCIES = libsemanage host-libxslt host-libsemanage
++SHADOW_CONF_OPTS = --disable-man --with-sysroot=$(STAGING_DIR) --enable-maintainer-mode --enable-shared --without-libpam --with-selinux
++SHADOW_CONF_ENV = CFLAGS="-O2 -Wall"
++SHADOW_AUTORECONF = YES
++
++$(eval $(autotools-package))
