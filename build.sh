@@ -26,7 +26,7 @@ if [ ! -e ".toolchain-rockore" ]; then
 	make sdk
 
 	echo "###### Toolchain generated, copying...."
-	cp output/images/aarch64-rockore-linux-gnu_sdk-buildroot.tar.gz .
+	cp output/images/aarch64-rockore-linux-gnu_sdk-buildroot.tar.gz ../
 
 	echo "###### Cleaning buildroot environment..."
 	make clean
