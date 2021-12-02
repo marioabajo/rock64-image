@@ -54,9 +54,6 @@ Pending tasks:
 - sync ntp:
   chronyd -q 'server 0.europe.pool.ntp.org iburst'
 
-- build with just one git clone (following attempts of running the pod will not call git clone):
-  docker run --name=rock64-image-builder --env UPDATE_CONFIG=0 --mount type=bind,source="$(pwd)"/output,target=/home/build/buildroot debian-buildroot:latest
-
 - container test:
   podman pull docker.io/debian
   podman run -ti debian /bin/bash
@@ -78,4 +75,7 @@ Pending tasks:
   kexec --type Image -p /boot/Image --append "console=ttyS2,1500000n8 rootfstype=squashfs root=PARTLABEL=rootfs"
   cat /sys/kernel/kexec_crash_loaded
   echo c > /proc/sysrq-trigger
+
+- get efuse:
+  xxd /sys/bus/nvmem/devices/rockchip-efuse0/nvmem
 

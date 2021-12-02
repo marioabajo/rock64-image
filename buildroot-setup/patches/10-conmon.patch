@@ -44,7 +44,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/conmon.mk buildr
 +CONMON_LICENSE = Apache-2.0
 +CONMON_LICENSE_FILES = LICENSE
 +
-+CONMON_DEPENDENCIES = libglib host-go
++CONMON_DEPENDENCIES = libglib2 host-go
 +CONMON_BUILD_TARGETS = bin/conmon
 +
 +CONMON_INSTALL_BINS = $(notdir $(CONMON_BUILD_TARGETS))
