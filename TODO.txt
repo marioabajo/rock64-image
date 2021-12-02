@@ -1,11 +1,13 @@
 Pending tasks:
+- Solve MAC issue
+- Solve GO bootstrap on aarch64
+- Add build tests
 - modify the update script : add self-update, adapt to current image and update kernel
+- make kernel cmdline modification more user-friendly
 - add login on tty1 -> screen is working
 - Add motd issue and issue.net
-- Add watchdog at boot
-- Add kdump partition
+- Add kdump (in progress)
 - Add LUKS
-- Install buildah
 - Install skopeo
 - explore adding selinux
 - enable sar logging
@@ -59,3 +61,21 @@ Pending tasks:
   podman pull docker.io/debian
   podman run -ti debian /bin/bash
   podman run --network=host --privileged --volume /dev:/dev --volume /sys:/sys --volume /run:/run -ti debian-xorg /bin/bash
+
+- RTC:
+  modprobe rtc-ds1307
+  i2cdetect -y 4
+  echo ds1307 0x18 > /sys/class/i2c-adapter/i2c-1/new_device
+
+- swap file:
+  fallocate -l 4G /media/disk1/swapfile
+  chmod 600 /media/disk1/swapfile
+  mkswap /media/disk1/swapfile
+  swapon /media/disk1/swapfile
+
+- kexec/kdump:
+  cat /sys/kernel/kexec_crash_loaded
+  kexec --type Image -p /boot/Image --append "console=ttyS2,1500000n8 rootfstype=squashfs root=PARTLABEL=rootfs"
+  cat /sys/kernel/kexec_crash_loaded
+  echo c > /proc/sysrq-trigger
+
