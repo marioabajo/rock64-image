@@ -1,0 +1,69 @@
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/buildah/buildah.mk buildroot-2021.08.1-b/package/buildah/buildah.mk
+--- buildroot-2021.08.1-a/package/buildah/buildah.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/buildah/buildah.mk	2021-12-02 00:33:20.662022596 +0100
+@@ -0,0 +1,21 @@
++################################################################################
++#
++# buildah
++#
++################################################################################
++
++BUILDAH_VERSION = v1.23.1
++BUILDAH_SOURCE = $(BUILDAH_VERSION).tar.gz
++BUILDAH_SITE = https://github.com/containers/buildah/archive/refs/tags/$(BUILDAH_SOURCE) 
++
++BUILDAH_LICENSE = Apache-2.0
++BUILDAH_LICENSE_FILES = LICENSE
++
++# other available tags: libdm_no_deferred_remove
++BUILDAH_TAGS = seccomp
++BUILDAH_DEPENDENCIES = libgpgme btrfs-progs libseccomp 
++
++# BUILDAH_DEPENDENCIES += bats containers-common
++
++$(eval $(golang-package))
++
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/buildah/Config.in buildroot-2021.08.1-b/package/buildah/Config.in
+--- buildroot-2021.08.1-a/package/buildah/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/buildah/Config.in	2021-12-02 00:22:41.666714077 +0100
+@@ -0,0 +1,29 @@
++config BR2_PACKAGE_BUILDAH
++	bool "buildah"
++	depends on BR2_PACKAGE_CRUN || BR2_PACKAGE_RUNC
++	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
++	depends on BR2_PACKAGE_HOST_GO_TARGET_CGO_LINKING_SUPPORTS
++	depends on BR2_TOOLCHAIN_HAS_THREADS
++	depends on !BR2_TOOLCHAIN_USES_UCLIBC
++	depends on BR2_USE_MMU
++	select BR2_PACKAGE_BTRFS_PROGS
++	select BR2_PACKAGE_LIBGLIB2
++	select BR2_PACKAGE_LIBGPGME
++	select BR2_PACKAGE_LIBASSUAN
++	select BR2_PACKAGE_LIBSECCOMP
++	select BR2_PACKAGE_GIT
++	select BR2_PACKAGE_BZIP2
++
++
++	help
++	  The Buildah package provides a command line tool that can be used to:
++	  - create a working container, either from scratch or using an image as a starting point
++	  - create an image, either from a working container or via the instructions in a Dockerfile
++	  - images can be built in either the OCI image format or the traditional upstream docker image format
++	  - mount a working container's root filesystem for manipulation
++	  - unmount a working container's root filesystem
++	  - use the updated contents of a container's root filesystem as a filesystem layer to create a new image
++	  - delete a working container or an image
++	  - rename a local container
++
++	  https://github.com/containers/buildah
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
+--- buildroot-2021.08.1-a/package/Config.in	2021-10-11 11:46:43.000000000 +0200
++++ buildroot-2021.08.1-b/package/Config.in	2021-12-02 02:24:22.430753586 +0100
+@@ -2444,6 +2444,7 @@
+ 	source "package/audit/Config.in"
+ 	source "package/balena-engine/Config.in"
+ 	source "package/bubblewrap/Config.in"
++	source "package/buildah/Config.in"
+ 	source "package/cgroupfs-mount/Config.in"
+ 	source "package/circus/Config.in"
+ 	source "package/containerd/Config.in"
