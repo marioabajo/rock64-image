@@ -1,5 +1,7 @@
 #!/bin/bash
 
+KEY_TIMEOUT=1
+
 function try_mount()
 {
 	max=3
@@ -53,7 +55,7 @@ do
 	mount -t overlay overlay $dir -o lowerdir=/$dir,workdir=/media/configfs/workdir/$dir,upperdir=/media/configfs/$dir
 done
 
-read -p "Press any key during next 3s to open a bash interpreter..." -t 3 -n 1 key && bash -i
+read -p "Press any key during next ${KEY_TIMEOUT}s to open a bash interpreter..." -t ${KEY_TIMEOUT} -n 1 key && bash -i
 
 echo
 echo "====== preinit end"
