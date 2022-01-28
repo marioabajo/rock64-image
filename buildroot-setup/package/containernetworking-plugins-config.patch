@@ -1,0 +1,11 @@
+diff -uNr --no-dereference buildroot-2021.08.1/package/Config.in buildroot-2021.08.1.patched/package/Config.in
+--- buildroot-2021.08.1/package/Config.in	2021-10-31 00:50:16.876067871 +0200
++++ buildroot-2021.08.1.patched/package/Config.in	2021-10-31 00:47:48.308025777 +0200
+@@ -1733,6 +1733,7 @@
+ 	source "package/c-ares/Config.in"
+ 	source "package/canfestival/Config.in"
+ 	source "package/cgic/Config.in"
++	source "package/containernetworking-plugins/Config.in"
+ 	source "package/cppzmq/Config.in"
+ 	source "package/curlpp/Config.in"
+ 	source "package/czmq/Config.in"

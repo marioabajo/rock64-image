@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-19 00:59:15.499555854 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:15.511556990 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:14.757661087 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:14.765661807 +0100
 @@ -2492,6 +2492,7 @@
  	source "package/openrc/Config.in"
  	source "package/openvmtools/Config.in"
@@ -36,15 +36,17 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/Config.in buildr
 +
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/podman.mk buildroot-2021.08.1-b/package/podman/podman.mk
 --- buildroot-2021.08.1-a/package/podman/podman.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/podman/podman.mk	2021-11-11 23:44:04.427447477 +0100
-@@ -0,0 +1,62 @@
++++ buildroot-2021.08.1-b/package/podman/podman.mk	2022-01-27 01:05:07.464564083 +0100
+@@ -0,0 +1,64 @@
 +################################################################################
 +#
 +# podman
 +#
 +################################################################################
 +
-+PODMAN_VERSION = v3.4.1
++PODMAN_VERSION = v3.4.4
++#PODMAN_SOURCE = $(PODMAN_VERSION).tar.gz
++#PODMAN_SITE = https://github.com/containers/podman/archive/refs/tags              
 +PODMAN_SITE = $(call github,containers,podman,$(PODMAN_VERSION))
 +
 +PODMAN_LICENSE = Apache-2.0

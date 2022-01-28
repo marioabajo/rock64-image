@@ -1,0 +1,11 @@
+config BR2_PACKAGE_CRI_TOOLS
+	bool "cri-tools"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	depends on BR2_PACKAGE_HOST_GO_TARGET_CGO_LINKING_SUPPORTS
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+
+	help
+	  CLI and validation tools for Kubelet Container Runtime Interface (CRI) .
+
+	  https://github.com/kubernetes-sigs/cri-tools
+

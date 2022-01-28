@@ -3,11 +3,15 @@
 set -e
 
 [ ! -e release ] && mkdir release
-VERSION="$(cat output/output/images/version.txt)"
-pv output/output/images/rootfs.squashfs | gzip > release/rock64-system-image-$VERSION.img.gz
-ln -s -f rock64-system-image-$VERSION.img.gz release/rock64-system-image-latest.img.gz
-cd release
-sha256sum rock64-system-image-$VERSION.img.gz > rock64-system-image-$VERSION.img.gz.sha256
-cd ..
-ln -s -f rock64-system-image-$VERSION.img.gz.sha256 release/rock64-system-image-latest.img.gz.sha256
+cd buildroot/output/images
 
+BOARD=$(awk -F '=' '/BR2_GLOBAL_PATCH_DIR/ {split($2,a,"/"); printf("%s-%s"),a[2],a[3]}' < ../../.config)
+
+sha256sum u-boot-tpl-spl.img u-boot.itb bootfs.ext4 rootfs.squashfs > checksum.sha256
+tar -czpf rockos-${BOARD}-$(cat version.txt).tar.gz u-boot-tpl-spl.img u-boot.itb bootfs.ext4 rootfs.squashfs checksum.sha256
+sha256sum rockos-${BOARD}-$(cat version.txt).tar.gz > rockos-${BOARD}-$(cat version.txt).tar.gz.sha256
+rm checksum.sha256
+mv rockos-${BOARD}-$(cat version.txt).tar.gz ../../../release/
+mv rockos-${BOARD}-$(cat version.txt).tar.gz.sha256 ../../../release/
+
+cd -

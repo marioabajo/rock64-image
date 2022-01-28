@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-19 00:59:17.895782518 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:17.899782897 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:16.957859152 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:16.961859512 +0100
 @@ -2456,6 +2456,7 @@
  	source "package/cpuload/Config.in"
  	source "package/crio/Config.in"
@@ -25,7 +25,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crun/Config.in buildroo
 +	  https://github.com/containers/crun
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/crun/crun.mk buildroot-2021.08.1-b/package/crun/crun.mk
 --- buildroot-2021.08.1-a/package/crun/crun.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/crun/crun.mk	2021-11-18 23:20:41.005074199 +0100
++++ buildroot-2021.08.1-b/package/crun/crun.mk	2022-01-27 00:21:01.506368304 +0100
 @@ -0,0 +1,26 @@
 +################################################################################
 +#
@@ -33,7 +33,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crun/crun.mk buildroot-
 +#
 +################################################################################
 +
-+CRUN_VERSION = 1.3
++CRUN_VERSION = 1.4.2
 +CRUN_GIT_VERSION = 8e5757a4e68590326dafe8a8b1b4a584b10a1370
 +CRUN_SITE = git://github.com/containers/crun.git
 +CRUN_METHOD = git

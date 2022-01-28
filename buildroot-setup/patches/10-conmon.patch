@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
 --- buildroot-2021.08.1-a/package/Config.in	2021-10-11 11:46:43.000000000 +0200
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:14.975506277 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:14.365625797 +0100
 @@ -2448,6 +2448,7 @@
  	source "package/circus/Config.in"
  	source "package/containerd/Config.in"
@@ -11,8 +11,8 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-202
  	source "package/dc3dd/Config.in"
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/Config.in buildroot-2021.08.1-b/package/conmon/Config.in
 --- buildroot-2021.08.1-a/package/conmon/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/conmon/Config.in	2020-12-22 02:05:30.528328069 +0100
-@@ -0,0 +1,15 @@
++++ buildroot-2021.08.1-b/package/conmon/Config.in	2021-12-19 02:21:25.813806500 +0100
+@@ -0,0 +1,16 @@
 +config BR2_PACKAGE_CONMON
 +	bool "conmon"
 +	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
@@ -24,22 +24,29 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/Config.in buildr
 +
 +	help
 +	  An OCI container runtime monitor.
-+	  Conmon is a monitoring program and communication tool between a container manager (like Podman or CRI-O) and an OCI runtime (like runc or crun) for a single container.
++	  Conmon is a monitoring program and communication tool
++	  between a container manager (like Podman or CRI-O) and an
++	   OCI runtime (like runc or crun) for a single container.
 +
 +	  https://github.com/containers/conmon
-+
+diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/conmon.hash buildroot-2021.08.1-b/package/conmon/conmon.hash
+--- buildroot-2021.08.1-a/package/conmon/conmon.hash	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2021.08.1-b/package/conmon/conmon.hash	2022-01-27 00:43:17.609801712 +0100
+@@ -0,0 +1 @@
++sha256  874909d831feac75e452562087f6ea0eb39848ef144397bdd8f0daf579c5ee85  v2.1.0.tar.gz
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/conmon.mk buildroot-2021.08.1-b/package/conmon/conmon.mk
 --- buildroot-2021.08.1-a/package/conmon/conmon.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/conmon/conmon.mk	2021-11-19 00:57:37.310220793 +0100
-@@ -0,0 +1,32 @@
++++ buildroot-2021.08.1-b/package/conmon/conmon.mk	2022-01-27 00:16:10.299524382 +0100
+@@ -0,0 +1,31 @@
 +################################################################################
 +#
 +# podman
 +#
 +################################################################################
 +
-+CONMON_VERSION = v2.0.30
-+CONMON_SITE = $(call github,containers,conmon,$(CONMON_VERSION))
++CONMON_VERSION = v2.1.0
++CONMON_SITE = https://github.com/containers/conmon/archive/refs/tags
++CONMON_SOURCE = $(CONMON_VERSION).tar.gz
 +
 +CONMON_LICENSE = Apache-2.0
 +CONMON_LICENSE_FILES = LICENSE
@@ -50,17 +57,15 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/conmon/conmon.mk buildr
 +CONMON_INSTALL_BINS = $(notdir $(CONMON_BUILD_TARGETS))
 +
 +define CONMON_BUILD_CMDS
-+        $(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) \
-+                CFLAGS="$(ZIP_TARGET_CFLAGS) $(ZIP_CFLAGS)" \
-+                AS="$(TARGET_CC) -c" \
-+                -f Makefile
++	$(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) \
++		CFLAGS="$(ZIP_TARGET_CFLAGS) $(ZIP_CFLAGS)" \
++		AS="$(TARGET_CC) -c" \
++		-f Makefile
 +endef
 +
 +define CONMON_INSTALL_TARGET_CMDS
-+        $(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) -f Makefile install \
-+                PREFIX=$(TARGET_DIR)/usr
++	$(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D) -f Makefile install \
++		PREFIX=$(TARGET_DIR)/usr
 +endef
 +
-+
 +$(eval $(generic-package))
-+

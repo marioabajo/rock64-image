@@ -1,7 +1,7 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-10-11 11:46:43.000000000 +0200
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-25 01:36:12.472112026 +0100
-@@ -2512,6 +2512,7 @@
+--- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:17.237884362 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:17.245885082 +0100
+@@ -2521,6 +2521,7 @@
  	source "package/scrypt/Config.in"
  	source "package/sdbusplus/Config.in"
  	source "package/seatd/Config.in"
@@ -65,7 +65,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/Config.in buildr
 +	  https://github.com/shadow-maint/shadow
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/shadow.mk buildroot-2021.08.1-b/package/shadow/shadow.mk
 --- buildroot-2021.08.1-a/package/shadow/shadow.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/shadow/shadow.mk	2021-11-25 01:35:05.106235664 +0100
++++ buildroot-2021.08.1-b/package/shadow/shadow.mk	2022-01-27 01:06:20.007237231 +0100
 @@ -0,0 +1,22 @@
 +################################################################################
 +#
@@ -73,7 +73,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/shadow.mk buildr
 +#
 +################################################################################
 +
-+SHADOW_VERSION = 4.9
++SHADOW_VERSION = v4.11.1
 +SHADOW_SITE = $(call github,shadow-maint,shadow,$(SHADOW_VERSION))
 +
 +SHADOW_LICENSE = Artistic-1.0-Perl

@@ -1,0 +1,25 @@
+config BR2_PACKAGE_CRIO
+	bool "cri-o"
+	depends on BR2_PACKAGE_CRUN || BR2_PACKAGE_RUNC
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	depends on BR2_PACKAGE_HOST_GO_TARGET_CGO_LINKING_SUPPORTS
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on !BR2_TOOLCHAIN_USES_UCLIBC
+	depends on BR2_USE_MMU
+	select BR2_PACKAGE_BTRFS_PROGS
+	select BR2_PACKAGE_CONMON
+	select BR2_PACKAGE_LIBGPGME
+	select BR2_PACKAGE_LIBSECCOMP
+	select BR2_PACKAGE_IPROUTE2
+	select BR2_PACKAGE_IPTABLES
+	select BR2_PACKAGE_UTIL_LINUX_NSENTER
+	select BR2_PACKAGE_LVM2
+
+	help
+	  CRI-O is meant to provide an integration path between OCI conformant 
+	  runtimes and the kubelet. Specifically, it implements the Kubelet 
+	  Container Runtime Interface (CRI) using OCI conformant runtimes. 
+	  The scope of CRI-O is tied to the scope of the CRI.
+
+	  https://github.com/cri-o/cri-o
+

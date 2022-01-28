@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-19 00:59:16.595659543 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-19 00:59:16.603660299 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:15.757751115 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:15.765751835 +0100
 @@ -2451,6 +2451,7 @@
  	source "package/coreutils/Config.in"
  	source "package/conmon/Config.in"
@@ -40,16 +40,17 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/Config.in buildroo
 +
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/crio.mk buildroot-2021.08.1-b/package/crio/crio.mk
 --- buildroot-2021.08.1-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/crio/crio.mk	2021-11-11 23:43:11.145089731 +0100
-@@ -0,0 +1,45 @@
++++ buildroot-2021.08.1-b/package/crio/crio.mk	2022-01-27 00:20:40.592422818 +0100
+@@ -0,0 +1,46 @@
 +################################################################################
 +#
 +# crio
 +#
 +################################################################################
 +
-+CRIO_VERSION = v1.21.4
-+CRIO_SITE = $(call github,cri-o,cri-o,$(CRIO_VERSION))
++CRIO_VERSION = v1.23.0
++CRIO_SITE = https://github.com/cri-o/cri-o/archive/refs/tags
++CRIO_SOURCE = $(CRIO_VERSION).tar.gz
 +
 +CRIO_LICENSE = Apache-2.0
 +CRIO_LICENSE_FILES = LICENSE

@@ -2,8 +2,9 @@
 
 MKIMAGE=$HOST_DIR/bin/mkimage
 BOARD_DIR="$(dirname $0)"
-VERSION=0.5
-BUILD_DATE=$(date +"%Y%m%d%H%M")
+VERSION=0.6
+BUILD_DATE=$(/bin/date +"%Y%m%d%H%M")
+echo "----------- Version: ${VERSION} Build: ${BUILD_DATE}"
 
 
 # Generate uboot TPL + SPL image
@@ -27,7 +28,7 @@ EOF
 
 # Generate the os-release file with information about the build date and version
 echo "${VERSION}-${BUILD_DATE}" > $BINARIES_DIR/version.txt
-cat << EOF > $TARGET_DIR/etc/os-release
+cat << EOF > $TARGET_DIR/usr/lib/os-release
 NAME="Rockos"
 ID="rockos"
 ID_LIKE="buildroot"

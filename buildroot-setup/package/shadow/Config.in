@@ -1,0 +1,50 @@
+config BR2_PACKAGE_SHADOW
+	bool "shadow tools"
+	depends on BR2_USE_MMU
+	select BR2_PACKAGE_LIBXSLT
+	select BR2_PACKAGE_LIBSEMANAGE
+	help
+	  Tools for managing users and groups.
+	  This includes tools like:
+	    - chage
+	    - check_subid_range
+	    - chfn
+	    - chgpasswd
+	    - chpasswd
+	    - chsh
+	    - expiry
+	    - faillog
+	    - free_subid_range
+	    - get_subid_owners
+	    - getsubids
+	    - gpasswd
+	    - groupadd
+	    - groupdel
+	    - groupmems
+	    - groupmod
+	    - groups
+	    - grpck
+	    - grpconv
+	    - grpunconv
+	    - id
+	    - lastlog
+	    - login
+	    - logoutd
+	    - newgidmap
+	    - newgrp
+	    - new_subid_range
+	    - newuidmap
+	    - newusers
+	    - nologin
+	    - passwd
+	    - pwck
+	    - pwconv
+	    - pwunconv
+	    - su
+	    - sulogin
+	    - useradd
+	    - userdel
+	    - usermod
+	    - vipw
+
+	  https://github.com/shadow-maint/shadow

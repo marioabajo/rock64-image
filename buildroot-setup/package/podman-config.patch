@@ -1,0 +1,11 @@
+diff -uNr --no-dereference buildroot-2021.08.1/package/Config.in buildroot-2021.08.1.patched/package/Config.in
+--- buildroot-2021.08.1/package/Config.in	2021-10-31 00:51:56.864026605 +0200
++++ buildroot-2021.08.1.patched/package/Config.in	2021-10-31 00:53:40.820223228 +0200
+@@ -2492,6 +2492,7 @@
+ 	source "package/openrc/Config.in"
+ 	source "package/openvmtools/Config.in"
+ 	source "package/pamtester/Config.in"
++	source "package/podman/Config.in"
+ 	source "package/polkit/Config.in"
+ 	source "package/powerpc-utils/Config.in"
+ 	source "package/procps-ng/Config.in"

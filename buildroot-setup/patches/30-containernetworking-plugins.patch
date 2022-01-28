@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2021-11-23 01:38:51.190917393 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2021-11-23 01:38:51.198918137 +0100
+--- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:15.093691336 +0100
++++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:15.101692056 +0100
 @@ -1733,6 +1733,7 @@
  	source "package/c-ares/Config.in"
  	source "package/canfestival/Config.in"
@@ -31,8 +31,8 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plu
 +
 diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk
 --- buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk	2021-11-23 01:24:01.191943954 +0100
-@@ -0,0 +1,29 @@
++++ buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk	2021-11-27 00:26:45.162540125 +0100
+@@ -0,0 +1,30 @@
 +################################################################################
 +#
 +# container networking plugins
@@ -40,7 +40,8 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plu
 +################################################################################
 +
 +CONTAINERNETWORKING_PLUGINS_VERSION = v1.0.1
-+CONTAINERNETWORKING_PLUGINS_SITE = $(call github,containernetworking,plugins,$(CONTAINERNETWORKING_PLUGINS_VERSION))
++CONTAINERNETWORKING_PLUGINS_SITE = https://github.com/containernetworking/plugins/archive/refs/tags
++CONTAINERNETWORKING_PLUGINS_SOURCE = $(CONTAINERNETWORKING_PLUGINS_VERSION).tar.gz
 +
 +CONTAINERNETWORKING_PLUGINS_LICENSE = Apache-2.0
 +CONTAINERNETWORKING_PLUGINS_LICENSE_FILES = LICENSE

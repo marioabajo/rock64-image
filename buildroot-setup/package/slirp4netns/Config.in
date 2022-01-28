@@ -1,0 +1,12 @@
+config BR2_PACKAGE_SLIRP4NETNS
+	bool "slirp4netns"
+	depends on BR2_USE_MMU
+	select BR2_PACKAGE_LIBGLIB2
+	select BR2_PACKAGE_LIBCAP
+	select BR2_PACKAGE_LIBSECCOMP
+	select BR2_PACKAGE_LIBSLIRP
+	help
+	  slirp4netns provides user-mode networking ("slirp") for unprivileged network namespaces.
+
+	  https://github.com/rootless-containers/slirp4netns
+
