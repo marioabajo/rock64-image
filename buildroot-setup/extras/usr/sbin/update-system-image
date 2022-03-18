@@ -12,83 +12,170 @@
 # - unset bootable flag on "rootfs-old"
 
 
-set -e
+set -e -o pipefail
+
+## Functions
+function list_partitions_by_name()
+# ARGS: $1 -> partition name to filter
+{
+	blkid "${DEVICE}"* | awk '/PARTLABEL=\"'$1'/ { \
+		sub(":","",$1); \
+		for (i=2; i<NF; i++) \
+		{ \
+			if ($i ~ /PARTLABEL=/) \
+			{ \
+				label=$i; \
+				break; \
+			} \
+		} \
+		gsub("\"","",label); \
+		print $1,substr(label,11); \
+	}'
+}
+
+function create_partition()
+# ARGS: $1 -> partition size
+{
+	partstart="$( printf "fix\n" | parted ---pretend-input-tty ${DEVICE} "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1);end=$3}}END{print int(end)}' )"
+	partend="$(( partstart + $1 ))"
+	parted ${DEVICE} -s -a optimal "mkpart primary ext4 $partstart $partend"
+	partnum="$( parted ${DEVICE} -s "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1)}}END{print last}' )"
+	separator="$( [[ "${DEVICE: -1}" =~ [0-9] ]] && echo p )"
+	echo ${DEVICE}${separator}${partnum}
+}
+
+function rename_partitions()
+# ARGS: $1 -> name
+#       $2 -> partition number of the new one
+{
+	echo "-- Renaming partitions ${1} <-> ${1}-old..."
+	current_partnum=$( list_partitions_by_name $1 | awk '/'$1'$/ {print substr($1,length($1),1)}' )
+	parted ${DEVICE} -s "name $2 $1"
+	parted ${DEVICE} -s "name ${current_partnum} ${1}-old"
+}
+
+function download_and_check()
+# ARGS: $1 -> image file name to download
+{
+	echo "-- Downloading image ${1}..."
+	curl -# -O "${REPO}/${1}"
+	echo "-- Downloading checksum ${1}.sha256..."
+	curl -# -O "${REPO}/${1}.sha256"
+
+	## image checksum
+	cat "${1}.sha256" | sha256sum -c
+
+	## internal files checksum
+	echo "Checking contents..."
+	CHECKSUM="$(tar -zxf ${1} checksum.sha256 -O)"
+	for file in $(tar -zt < ${1})
+	do
+		[ "$file" == "checksum.sha256" ] && continue
+		echo -n "  -- checking $file ..."
+		FILE_CHK=$(tar -zxf ${1} $file -O | sha256sum | tr -d ' -')
+		echo "$CHECKSUM" | grep -q "$FILE_CHK  $file" && echo "ok" || (echo "error"; exit 1)
+	done
+}
+
+function list_releases()
+{
+	curl -s $REPO | awk -F '>|<|=' '/a href=/ {if ($0 ~ "sha256") continue; gsub("\"","");print $5}'
+}
 
 ## load config parameters
 . /etc/sysconfig/update-system-image.cfg
 
-if [ -z "$repo" ] || [ -z "$prefix" ] || [ -z "$version" ] || [ -z "$partsize" ]
+if [ -z "$REPO" ] || [ -z "$ROOT_PARTSIZE" ] || [ -z "$BOOT_PARTSIZE" ]
 then
 	echo "ERROR: empty configuration parameter found in /etc/sysconfig/update-system-image.cfg"
 	exit -1
 fi
 
 ## variables
-imagename="${prefix}${version}.img.gz"
-device="/dev/$( lsblk -no pkname $( mount | awk '/ \/ / {print $1}' ) )"
+BOARD=$(dmesg | awk '/Machine model/ {printf "%s-%s",tolower($5),tolower($6)}')
+DEVICE="/dev/$( lsblk -no pkname $( mount | awk '/ \/ / {print $1}' ) )"
+
+
+
+
+
+## Get latest release
+IMAGE=$(list_releases | sort | tail -1)
 
 ## Download file and do checksum
-echo "- Downloading image ${imagename}..."
 cd /tmp
-curl -# -O "${repo}/${imagename}"
-curl -# -O "${repo}/${imagename}.sha256"
-cat "${imagename}.sha256" | sha256sum -c
+download_and_check $IMAGE
+
+
 
 ## Find (or create) a partition for the new image
-echo "- Search for partition..."
+echo "-- Search for partitions..."
 
-# get a partition list
-partlist=$( blkid "${device}"* | awk '/PARTLABEL=\"rootfs/ { \
-	sub(":","",$1); \
-	for (i=2; i<NF; i++) \
-	{ \
-		if ($i ~ /PARTLABEL=/) \
-		{ \
-			label=$i; \
-			break; \
-		} \
-	} \
-	gsub("\"","",label); \
-	print $1,substr(label,11); \
-}' )
+## get partitions starting with label rootfs
+currentroot_part=$( list_partitions_by_name rootfs | awk '/rootfs/ {print $1}' )
+currentroot_partnum=${currentroot_part=: -1}
 
-# if there is a "rootfs-old" partition already created use it
-part=$( echo "$partlist" | awk '/rootfs-old/ {print $1}' )
-partnum=${part: -1}
+## if there is a "rootfs-old" partition already created use it
+root_part=$( list_partitions_by_name rootfs-old | awk '/rootfs-old/ {print $1}' )
+root_partnum=${root_part: -1}
 
-# if there is no available partition, append a new one
-if [ -z "$part" ]
+## if there is no available partition, append a new one
+if [ -z "$root_part" ]
 then
 	echo "  No partition available, creating a new one..."
-	partstart="$( printf "fix\n" | parted ---pretend-input-tty ${device} "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1);end=$3}}END{print int(end)}' )"
-	partend="$(( partstart + partsize ))"
-	parted ${device} -s -a optimal "mkpart primary ext4 $partstart $partend"
-	partnum="$( parted ${device} -s "print" | awk 'BEGIN {last=0}{if (int($1) > last){last=int($1)}}END{print last}' )"
-	separator="$( [[ "${device: -1}" =~ [0-9] ]] && echo p )"
-	part=${device}${separator}${partnum}
+	root_part=$(create_partition $ROOT_PARTSIZE)
+	root_partnum=${root_part: -1}
 fi
 
+## if there is a "bootfs-old" partition already created use it
+boot_part=$( list_partitions_by_name bootfs | awk '/bootfs-old/ {print $1}' )
+boot_partnum=${boot_part: -1}
+
+## if there is no available partition, append a new one
+if [ -z "$boot_part" ]
+then
+	echo "  No partition available, creating a new one..."
+	boot_part=$(create_partition $BOOT_PARTSIZE)
+	boot_partnum=${boot_part: -1}
+fi
+
+
+
+
 ## Write contents to partition
-echo "- Copying ${imagename} to ${part}..."
-pv "${imagename}" | gunzip > "${part}"
-echo "  done"
+echo "-- Copying \"rootfs.squashfs\" to ${root_part}..."
+tar -zxf ${IMAGE} rootfs.squashfs -O --totals > "${root_part}"
+
+## Write contents to partition
+echo "-- Copying \"bootfs.ext4\" to ${boot_part}..."
+tar -zxf ${IMAGE} bootfs.ext4 -O --totals > "${boot_part}"
+
+
 
 ## Set bootable flag on new partition
-echo "- Seting bootable flag on new partition..."
-parted ${device} -s "set ${partnum} legacy_boot"
+echo "-- Seting bootable flag on new partition..."
+parted ${DEVICE} -s "set ${root_partnum} legacy_boot"
 
 ## Rename partitions rootfs <-> rootfs-old
-echo "- Renaming partitions rootfs <-> rootfs-old..."
-current_partnum=$( echo "$partlist" | awk '/rootfs$/ {print substr($1,length($1),1)}' )
-parted ${device} -s "name ${partnum} rootfs"
-parted ${device} -s "name ${current_partnum} rootfs-old"
+rename_partitions rootfs ${root_partnum}
+rename_partitions bootfs ${boot_partnum}
 
 ## Unset bootable flag on currently running partition
-echo "- Unsetting bootable flag on currently running rootfs"
-parted ${device} -s "set ${current_partnum} legacy_boot off"
+echo "-- Unsetting bootable flag on currently running rootfs"
+parted ${DEVICE} -s "set ${currentroot_partnum} legacy_boot off"
+
+
+## Update boot loader
+#ubootspl_part=$( list_partitions_by_name uboot-spl | awk '/uboot-spl\"/ {print $1}' )
+#uboot_part=$( list_partitions_by_name uboot | awk '/uboot\"/ {print $1}' )
+#echo "-- Updating boot loader (uboot-spl)"
+#tar -zxf ${IMAGE} u-boot-tpl-spl.img -O --totals > "${ubootspl_part}"
+#echo "-- Updating boot loader (uboot)"
+#tar -zxf ${IMAGE} u-boot.itb -O --totals > "${uboot_part}"
+
 
 ## Reboot
-echo "- Rebooting in 5 seconds..."
-sleep 5
-reboot
+#echo "- Rebooting in 5 seconds..."
+#sleep 5
+#reboot
 
