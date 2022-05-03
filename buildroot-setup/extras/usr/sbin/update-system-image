@@ -113,7 +113,7 @@ echo "-- Search for partitions..."
 
 ## get partitions starting with label rootfs
 currentroot_part=$( list_partitions_by_name rootfs | awk '/rootfs/ {print $1}' )
-currentroot_partnum=${currentroot_part=: -1}
+currentroot_partnum=${currentroot_part: -1}
 
 ## if there is a "rootfs-old" partition already created use it
 root_part=$( list_partitions_by_name rootfs-old | awk '/rootfs-old/ {print $1}' )
