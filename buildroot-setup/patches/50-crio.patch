@@ -1,17 +1,17 @@
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:15.757751115 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:15.765751835 +0100
-@@ -2451,6 +2451,7 @@
- 	source "package/coreutils/Config.in"
+diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
+--- buildroot-2022.05-a/package/Config.in	2022-06-17 01:32:59.793846870 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:33:01.173809483 +0200
+@@ -2525,6 +2525,7 @@
  	source "package/conmon/Config.in"
+ 	source "package/cpulimit/Config.in"
  	source "package/cpuload/Config.in"
 +	source "package/crio/Config.in"
  	source "package/cri-tools/Config.in"
  	source "package/daemon/Config.in"
  	source "package/dc3dd/Config.in"
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/Config.in buildroot-2021.08.1-b/package/crio/Config.in
---- buildroot-2021.08.1-a/package/crio/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/crio/Config.in	2021-11-19 00:41:29.477749085 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/crio/Config.in buildroot-2022.05-b/package/crio/Config.in
+--- buildroot-2022.05-a/package/crio/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/crio/Config.in	2021-11-19 00:41:29.477749085 +0100
 @@ -0,0 +1,25 @@
 +config BR2_PACKAGE_CRIO
 +	bool "cri-o"
@@ -38,17 +38,17 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/Config.in buildroo
 +
 +	  https://github.com/cri-o/cri-o
 +
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/crio.mk buildroot-2021.08.1-b/package/crio/crio.mk
---- buildroot-2021.08.1-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/crio/crio.mk	2022-01-27 00:20:40.592422818 +0100
-@@ -0,0 +1,46 @@
+diff -uNr --no-dereference buildroot-2022.05-a/package/crio/crio.mk buildroot-2022.05-b/package/crio/crio.mk
+--- buildroot-2022.05-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/crio/crio.mk	2022-06-09 00:24:29.731330088 +0200
+@@ -0,0 +1,45 @@
 +################################################################################
 +#
 +# crio
 +#
 +################################################################################
 +
-+CRIO_VERSION = v1.23.0
++CRIO_VERSION = v1.24.1
 +CRIO_SITE = https://github.com/cri-o/cri-o/archive/refs/tags
 +CRIO_SOURCE = $(CRIO_VERSION).tar.gz
 +
@@ -75,7 +75,6 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/crio/crio.mk buildroot-
 +	sed -i -e 's|/usr/local/bin|/usr/bin|' $(@D)/contrib/systemd/crio.service
 +	sed -i -e 's|/usr/local/bin|/usr/bin|' $(@D)/contrib/systemd/crio-wipe.service
 +	$(INSTALL) -D -m 0644 $(@D)/contrib/systemd/crio.service $(TARGET_DIR)/lib/systemd/system/crio.service
-+	$(INSTALL) -D -m 0644 $(@D)/contrib/systemd/crio-shutdown.service $(TARGET_DIR)/lib/systemd/system/crio-shutdown.service
 +	$(INSTALL) -D -m 0644 $(@D)/contrib/systemd/crio-wipe.service $(TARGET_DIR)/lib/systemd/system/crio-wipe.service
 +endef
 +

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CONMON_VERSION = v2.1.0
+CONMON_VERSION = v2.1.1
 CONMON_SITE = https://github.com/containers/conmon/archive/refs/tags
 CONMON_SOURCE = $(CONMON_VERSION).tar.gz
 

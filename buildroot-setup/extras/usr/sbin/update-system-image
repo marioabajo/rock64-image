@@ -79,7 +79,11 @@ function download_and_check()
 
 function list_releases()
 {
-	curl -s $REPO | awk -F '>|<|=' '/a href=/ {if ($0 ~ "sha256") continue; gsub("\"","");print $5}'
+	curl -s $REPO | awk -F '>|<|=' '/a href=/ {if ($0 ~ "sha256") next; gsub("\"","");print $5}'
+	if [ $? -ne 0 ]; then
+		echo "ERROR: issues connecting to $REPO or no release available" 1>&2
+		exit 1
+	fi
 }
 
 ## load config parameters
@@ -112,7 +116,7 @@ download_and_check $IMAGE
 echo "-- Search for partitions..."
 
 ## get partitions starting with label rootfs
-currentroot_part=$( list_partitions_by_name rootfs | awk '/rootfs/ {print $1}' )
+currentroot_part=$( list_partitions_by_name rootfs | awk '/rootfs$/ {print $1}' )
 currentroot_partnum=${currentroot_part: -1}
 
 ## if there is a "rootfs-old" partition already created use it

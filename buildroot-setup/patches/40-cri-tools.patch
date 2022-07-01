@@ -1,17 +1,17 @@
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:15.437722305 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:15.445723025 +0100
-@@ -2451,6 +2451,7 @@
- 	source "package/coreutils/Config.in"
+diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
+--- buildroot-2022.05-a/package/Config.in	2022-06-17 01:32:56.993922732 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:32:59.453856081 +0200
+@@ -2525,6 +2525,7 @@
  	source "package/conmon/Config.in"
+ 	source "package/cpulimit/Config.in"
  	source "package/cpuload/Config.in"
 +	source "package/cri-tools/Config.in"
  	source "package/daemon/Config.in"
  	source "package/dc3dd/Config.in"
  	source "package/dcron/Config.in"
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/cri-tools/Config.in buildroot-2021.08.1-b/package/cri-tools/Config.in
---- buildroot-2021.08.1-a/package/cri-tools/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/cri-tools/Config.in	2020-12-19 16:46:32.430731070 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/cri-tools/Config.in buildroot-2022.05-b/package/cri-tools/Config.in
+--- buildroot-2022.05-a/package/cri-tools/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/cri-tools/Config.in	2020-12-19 16:46:32.430731070 +0100
 @@ -0,0 +1,11 @@
 +config BR2_PACKAGE_CRI_TOOLS
 +	bool "cri-tools"
@@ -24,9 +24,9 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/cri-tools/Config.in bui
 +
 +	  https://github.com/kubernetes-sigs/cri-tools
 +
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/cri-tools/cri-tools.mk buildroot-2021.08.1-b/package/cri-tools/cri-tools.mk
---- buildroot-2021.08.1-a/package/cri-tools/cri-tools.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/cri-tools/cri-tools.mk	2022-01-27 00:18:20.783481172 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/cri-tools/cri-tools.mk buildroot-2022.05-b/package/cri-tools/cri-tools.mk
+--- buildroot-2022.05-a/package/cri-tools/cri-tools.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/cri-tools/cri-tools.mk	2022-06-09 00:24:44.570971088 +0200
 @@ -0,0 +1,30 @@
 +################################################################################
 +#
@@ -34,7 +34,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/cri-tools/cri-tools.mk 
 +#
 +################################################################################
 +
-+CRI_TOOLS_VERSION = v1.23.0
++CRI_TOOLS_VERSION = v1.24.2
 +CRI_TOOLS_SITE = https://github.com/kubernetes-sigs/cri-tools/archive/refs/tags
 +CRI_TOOLS_SOURCE = $(CRI_TOOLS_VERSION).tar.gz
 +

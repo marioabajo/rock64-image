@@ -5,7 +5,7 @@
 ################################################################################
 
 LIBSLIRP_VERSION = v4.6.1
-LIBSLIRP_SITE = https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.6.1
+LIBSLIRP_SITE = https://gitlab.freedesktop.org/slirp/libslirp/-/archive/$(LIBSLIRP_VERSION)
 
 LIBSLIRP_LICENSE = 
 LIBSLIRP_LICENSE_FILES = COPYRIGHT

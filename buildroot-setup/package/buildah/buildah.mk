@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-BUILDAH_VERSION = v1.23.1
+BUILDAH_VERSION = v1.24.4
+BUILDAH_SITE = https://github.com/containers/buildah/archive/refs/tags
 BUILDAH_SOURCE = $(BUILDAH_VERSION).tar.gz
-BUILDAH_SITE = https://github.com/containers/buildah/archive/refs/tags/$(BUILDAH_SOURCE) 
 
 BUILDAH_LICENSE = Apache-2.0
 BUILDAH_LICENSE_FILES = LICENSE

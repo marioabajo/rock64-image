@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-CRUN_VERSION = 1.4.2
-CRUN_GIT_VERSION = 8e5757a4e68590326dafe8a8b1b4a584b10a1370
-CRUN_SITE = git://github.com/containers/crun.git
-CRUN_METHOD = git
+CRUN_VERSION = 1.4.5
+#CRUN_SITE = $(call github,containers,crun,$(CRUN_VERSION))
+CRUN_SITE = https://github.com/containers/crun.git
+CRUN_SITE_METHOD = git
 
 CRUN_LICENSE = GPL-2.0+
 CRUN_LICENSE_FILES = COPYING

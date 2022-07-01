@@ -1,17 +1,17 @@
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:17.237884362 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:17.245885082 +0100
-@@ -2521,6 +2521,7 @@
- 	source "package/scrypt/Config.in"
+diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
+--- buildroot-2022.05-a/package/Config.in	2022-06-17 01:33:06.009678487 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:33:06.185673720 +0200
+@@ -2598,6 +2598,7 @@
+ 	source "package/sdbus-cpp/Config.in"
  	source "package/sdbusplus/Config.in"
  	source "package/seatd/Config.in"
 +	source "package/shadow/Config.in"
  	source "package/smack/Config.in"
  	source "package/start-stop-daemon/Config.in"
  	source "package/supervisor/Config.in"
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/Config.in buildroot-2021.08.1-b/package/shadow/Config.in
---- buildroot-2021.08.1-a/package/shadow/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/shadow/Config.in	2021-11-23 02:14:23.902902863 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/shadow/Config.in buildroot-2022.05-b/package/shadow/Config.in
+--- buildroot-2022.05-a/package/shadow/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/shadow/Config.in	2021-11-23 02:14:23.902902863 +0100
 @@ -0,0 +1,50 @@
 +config BR2_PACKAGE_SHADOW
 +	bool "shadow tools"
@@ -63,9 +63,9 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/Config.in buildr
 +	    - vipw
 +
 +	  https://github.com/shadow-maint/shadow
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/shadow/shadow.mk buildroot-2021.08.1-b/package/shadow/shadow.mk
---- buildroot-2021.08.1-a/package/shadow/shadow.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/shadow/shadow.mk	2022-01-27 01:06:20.007237231 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/shadow/shadow.mk buildroot-2022.05-b/package/shadow/shadow.mk
+--- buildroot-2022.05-a/package/shadow/shadow.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/shadow/shadow.mk	2022-01-27 01:06:20.007237231 +0100
 @@ -0,0 +1,22 @@
 +################################################################################
 +#

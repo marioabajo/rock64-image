@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-SLIRP4NETNS_VERSION = v1.1.12
+SLIRP4NETNS_VERSION = v1.2.0
 SLIRP4NETNS_SITE = $(call github,rootless-containers,slirp4netns,$(SLIRP4NETNS_VERSION))
 
 SLIRP4NETNS_LICENSE = GPL-2.0+

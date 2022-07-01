@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CONTAINERNETWORKING_PLUGINS_VERSION = v1.0.1
+CONTAINERNETWORKING_PLUGINS_VERSION = v1.1.1
 CONTAINERNETWORKING_PLUGINS_SITE = https://github.com/containernetworking/plugins/archive/refs/tags
 CONTAINERNETWORKING_PLUGINS_SOURCE = $(CONTAINERNETWORKING_PLUGINS_VERSION).tar.gz
 

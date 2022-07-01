@@ -1,17 +1,17 @@
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:15.093691336 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:15.101692056 +0100
-@@ -1733,6 +1733,7 @@
+diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
+--- buildroot-2022.05-a/package/Config.in	2022-06-17 01:32:54.142000015 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:32:56.649932054 +0200
+@@ -1779,6 +1779,7 @@
+ 	source "package/bluez5_utils-headers/Config.in"
  	source "package/c-ares/Config.in"
- 	source "package/canfestival/Config.in"
  	source "package/cgic/Config.in"
 +	source "package/containernetworking-plugins/Config.in"
  	source "package/cppzmq/Config.in"
  	source "package/curlpp/Config.in"
  	source "package/czmq/Config.in"
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plugins/Config.in buildroot-2021.08.1-b/package/containernetworking-plugins/Config.in
---- buildroot-2021.08.1-a/package/containernetworking-plugins/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/containernetworking-plugins/Config.in	2020-12-18 00:54:40.618792724 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/containernetworking-plugins/Config.in buildroot-2022.05-b/package/containernetworking-plugins/Config.in
+--- buildroot-2022.05-a/package/containernetworking-plugins/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/containernetworking-plugins/Config.in	2020-12-18 00:54:40.618792724 +0100
 @@ -0,0 +1,16 @@
 +config BR2_PACKAGE_CONTAINERNETWORKING_PLUGINS
 +	bool "containernetworking-plugins"
@@ -29,9 +29,9 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plu
 +
 +	  https://github.com/containernetworking/plugins
 +
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk
---- buildroot-2021.08.1-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/containernetworking-plugins/containernetworking-plugins.mk	2021-11-27 00:26:45.162540125 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2022.05-b/package/containernetworking-plugins/containernetworking-plugins.mk
+--- buildroot-2022.05-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/containernetworking-plugins/containernetworking-plugins.mk	2022-05-04 01:02:17.642693461 +0200
 @@ -0,0 +1,30 @@
 +################################################################################
 +#
@@ -39,7 +39,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/containernetworking-plu
 +#
 +################################################################################
 +
-+CONTAINERNETWORKING_PLUGINS_VERSION = v1.0.1
++CONTAINERNETWORKING_PLUGINS_VERSION = v1.1.1
 +CONTAINERNETWORKING_PLUGINS_SITE = https://github.com/containernetworking/plugins/archive/refs/tags
 +CONTAINERNETWORKING_PLUGINS_SOURCE = $(CONTAINERNETWORKING_PLUGINS_VERSION).tar.gz
 +

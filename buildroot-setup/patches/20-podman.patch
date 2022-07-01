@@ -1,7 +1,7 @@
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:14.757661087 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:14.765661807 +0100
-@@ -2492,6 +2492,7 @@
+diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
+--- buildroot-2022.05-a/package/Config.in	2022-06-17 01:32:53.126027548 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:32:53.838008253 +0200
+@@ -2568,6 +2568,7 @@
  	source "package/openrc/Config.in"
  	source "package/openvmtools/Config.in"
  	source "package/pamtester/Config.in"
@@ -9,9 +9,9 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-202
  	source "package/polkit/Config.in"
  	source "package/powerpc-utils/Config.in"
  	source "package/procps-ng/Config.in"
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/Config.in buildroot-2021.08.1-b/package/podman/Config.in
---- buildroot-2021.08.1-a/package/podman/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/podman/Config.in	2021-11-18 23:33:27.113737238 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/podman/Config.in buildroot-2022.05-b/package/podman/Config.in
+--- buildroot-2022.05-a/package/podman/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/podman/Config.in	2021-11-18 23:33:27.113737238 +0100
 @@ -0,0 +1,21 @@
 +config BR2_PACKAGE_PODMAN
 +	bool "podman"
@@ -34,9 +34,9 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/Config.in buildr
 +
 +	  https://github.com/containers/podman
 +
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/podman.mk buildroot-2021.08.1-b/package/podman/podman.mk
---- buildroot-2021.08.1-a/package/podman/podman.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/podman/podman.mk	2022-01-27 01:05:07.464564083 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/podman/podman.mk buildroot-2022.05-b/package/podman/podman.mk
+--- buildroot-2022.05-a/package/podman/podman.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/podman/podman.mk	2022-05-25 01:46:48.014700385 +0200
 @@ -0,0 +1,64 @@
 +################################################################################
 +#
@@ -44,7 +44,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/podman/podman.mk buildr
 +#
 +################################################################################
 +
-+PODMAN_VERSION = v3.4.4
++PODMAN_VERSION = v4.1.0
 +#PODMAN_SOURCE = $(PODMAN_VERSION).tar.gz
 +#PODMAN_SITE = https://github.com/containers/podman/archive/refs/tags              
 +PODMAN_SITE = $(call github,containers,podman,$(PODMAN_VERSION))

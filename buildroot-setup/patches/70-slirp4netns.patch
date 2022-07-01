@@ -1,7 +1,7 @@
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-2021.08.1-b/package/Config.in
---- buildroot-2021.08.1-a/package/Config.in	2022-01-27 01:29:16.341803692 +0100
-+++ buildroot-2021.08.1-b/package/Config.in	2022-01-27 01:29:16.345804052 +0100
-@@ -2290,6 +2290,7 @@
+diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
+--- buildroot-2022.05-a/package/Config.in	2022-06-17 01:33:03.029759205 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:33:03.709740785 +0200
+@@ -2360,6 +2360,7 @@
  	source "package/shadowsocks-libev/Config.in"
  	source "package/shairport-sync/Config.in"
  	source "package/shellinabox/Config.in"
@@ -9,9 +9,9 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/Config.in buildroot-202
  	source "package/smcroute/Config.in"
  	source "package/sngrep/Config.in"
  	source "package/snmpclitools/Config.in"
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/slirp4netns/Config.in buildroot-2021.08.1-b/package/slirp4netns/Config.in
---- buildroot-2021.08.1-a/package/slirp4netns/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/slirp4netns/Config.in	2021-11-12 00:37:34.119331969 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/slirp4netns/Config.in buildroot-2022.05-b/package/slirp4netns/Config.in
+--- buildroot-2022.05-a/package/slirp4netns/Config.in	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/slirp4netns/Config.in	2021-11-12 00:37:34.119331969 +0100
 @@ -0,0 +1,12 @@
 +config BR2_PACKAGE_SLIRP4NETNS
 +	bool "slirp4netns"
@@ -25,9 +25,9 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/slirp4netns/Config.in b
 +
 +	  https://github.com/rootless-containers/slirp4netns
 +
-diff -uNr --no-dereference buildroot-2021.08.1-a/package/slirp4netns/slirp4netns.mk buildroot-2021.08.1-b/package/slirp4netns/slirp4netns.mk
---- buildroot-2021.08.1-a/package/slirp4netns/slirp4netns.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2021.08.1-b/package/slirp4netns/slirp4netns.mk	2021-11-12 01:20:59.802196798 +0100
+diff -uNr --no-dereference buildroot-2022.05-a/package/slirp4netns/slirp4netns.mk buildroot-2022.05-b/package/slirp4netns/slirp4netns.mk
+--- buildroot-2022.05-a/package/slirp4netns/slirp4netns.mk	1970-01-01 01:00:00.000000000 +0100
++++ buildroot-2022.05-b/package/slirp4netns/slirp4netns.mk	2022-05-04 01:02:59.089690214 +0200
 @@ -0,0 +1,21 @@
 +################################################################################
 +#
@@ -35,7 +35,7 @@ diff -uNr --no-dereference buildroot-2021.08.1-a/package/slirp4netns/slirp4netns
 +#
 +################################################################################
 +
-+SLIRP4NETNS_VERSION = v1.1.12
++SLIRP4NETNS_VERSION = v1.2.0
 +SLIRP4NETNS_SITE = $(call github,rootless-containers,slirp4netns,$(SLIRP4NETNS_VERSION))
 +
 +SLIRP4NETNS_LICENSE = GPL-2.0+
