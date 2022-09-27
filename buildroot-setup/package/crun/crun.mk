@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRUN_VERSION = 1.4.5
+CRUN_VERSION = 1.6
 #CRUN_SITE = $(call github,containers,crun,$(CRUN_VERSION))
 CRUN_SITE = https://github.com/containers/crun.git
 CRUN_SITE_METHOD = git
@@ -14,6 +14,8 @@ CRUN_LICENSE_FILES = COPYING
 
 CRUN_DEPENDENCIES = libcap libseccomp libyajl
 CRUN_GIT_SUBMODULES = YES
+
+# CRUN_CONF_OPTS = --disable-bpf
 
 define CRUN_RUN_AUTOGEN
 	cd $(@D) && \

@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
---- buildroot-2022.05-a/package/Config.in	2022-06-17 01:32:59.793846870 +0200
-+++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:33:01.173809483 +0200
+--- buildroot-2022.05-a/package/Config.in	2022-09-27 00:21:11.281420739 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-09-27 00:21:12.585412107 +0200
 @@ -2525,6 +2525,7 @@
  	source "package/conmon/Config.in"
  	source "package/cpulimit/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.
  	source "package/dc3dd/Config.in"
 diff -uNr --no-dereference buildroot-2022.05-a/package/crio/Config.in buildroot-2022.05-b/package/crio/Config.in
 --- buildroot-2022.05-a/package/crio/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/crio/Config.in	2021-11-19 00:41:29.477749085 +0100
++++ buildroot-2022.05-b/package/crio/Config.in	2022-07-05 01:47:59.920261706 +0200
 @@ -0,0 +1,25 @@
 +config BR2_PACKAGE_CRIO
 +	bool "cri-o"
@@ -40,7 +40,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/crio/Config.in buildroot-
 +
 diff -uNr --no-dereference buildroot-2022.05-a/package/crio/crio.mk buildroot-2022.05-b/package/crio/crio.mk
 --- buildroot-2022.05-a/package/crio/crio.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/crio/crio.mk	2022-06-09 00:24:29.731330088 +0200
++++ buildroot-2022.05-b/package/crio/crio.mk	2022-09-15 23:24:19.415395577 +0200
 @@ -0,0 +1,45 @@
 +################################################################################
 +#
@@ -48,7 +48,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/crio/crio.mk buildroot-20
 +#
 +################################################################################
 +
-+CRIO_VERSION = v1.24.1
++CRIO_VERSION = v1.25.0
 +CRIO_SITE = https://github.com/cri-o/cri-o/archive/refs/tags
 +CRIO_SOURCE = $(CRIO_VERSION).tar.gz
 +

@@ -1,6 +1,12 @@
 Pending tasks:
+- systemd watchdot config snippet seems to not be working correctly
 - Solve MAC issue
 - Solve GO bootstrap on aarch64
+- Add Script to create /var/log/wtmp if it doesn't exist:
+    touch /var/log/wtmp /var/run/utmp /var/log/btmp
+    chown root:utmp /var/log/wtmp /var/run/utmp /var/log/btmp
+    chmod 664 /var/log/wtmp /var/run/utmp
+    chmod 600 /var/log/btmp
 - Add build tests
 - modify the update script : add self-update, adapt to current image and update kernel
 - make kernel cmdline modification more user-friendly

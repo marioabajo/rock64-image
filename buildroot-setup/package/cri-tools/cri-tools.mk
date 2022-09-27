@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRI_TOOLS_VERSION = v1.24.2
+CRI_TOOLS_VERSION = v1.25.0
 CRI_TOOLS_SITE = https://github.com/kubernetes-sigs/cri-tools/archive/refs/tags
 CRI_TOOLS_SOURCE = $(CRI_TOOLS_VERSION).tar.gz
 

@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
---- buildroot-2022.05-a/package/Config.in	2022-06-17 01:32:54.142000015 +0200
-+++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:32:56.649932054 +0200
+--- buildroot-2022.05-a/package/Config.in	2022-09-27 00:21:08.265440712 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-09-27 00:21:09.569432076 +0200
 @@ -1779,6 +1779,7 @@
  	source "package/bluez5_utils-headers/Config.in"
  	source "package/c-ares/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.
  	source "package/czmq/Config.in"
 diff -uNr --no-dereference buildroot-2022.05-a/package/containernetworking-plugins/Config.in buildroot-2022.05-b/package/containernetworking-plugins/Config.in
 --- buildroot-2022.05-a/package/containernetworking-plugins/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/containernetworking-plugins/Config.in	2020-12-18 00:54:40.618792724 +0100
++++ buildroot-2022.05-b/package/containernetworking-plugins/Config.in	2022-07-05 01:47:59.920261706 +0200
 @@ -0,0 +1,16 @@
 +config BR2_PACKAGE_CONTAINERNETWORKING_PLUGINS
 +	bool "containernetworking-plugins"
@@ -31,7 +31,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/containernetworking-plugi
 +
 diff -uNr --no-dereference buildroot-2022.05-a/package/containernetworking-plugins/containernetworking-plugins.mk buildroot-2022.05-b/package/containernetworking-plugins/containernetworking-plugins.mk
 --- buildroot-2022.05-a/package/containernetworking-plugins/containernetworking-plugins.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/containernetworking-plugins/containernetworking-plugins.mk	2022-05-04 01:02:17.642693461 +0200
++++ buildroot-2022.05-b/package/containernetworking-plugins/containernetworking-plugins.mk	2022-07-05 01:47:59.920261706 +0200
 @@ -0,0 +1,30 @@
 +################################################################################
 +#

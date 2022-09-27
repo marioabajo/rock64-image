@@ -13,6 +13,7 @@ if [ ! -e buildroot/Makefile ]; then
 	if [ -d src-backup ]; then
 		[ -d buildroot/dl ] || mkdir buildroot/dl
 		cp -a src-backup/* buildroot/dl
+		[ -d buildroot/dl/toolchain-external-custom ] && rm -rf buildroot/dl/toolchain-external-custom
 	fi
 fi
 

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRIO_VERSION = v1.24.1
+CRIO_VERSION = v1.25.0
 CRIO_SITE = https://github.com/cri-o/cri-o/archive/refs/tags
 CRIO_SOURCE = $(CRIO_VERSION).tar.gz
 

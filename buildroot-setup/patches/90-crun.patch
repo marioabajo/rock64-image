@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
---- buildroot-2022.05-a/package/Config.in	2022-06-17 01:33:05.269698530 +0200
-+++ buildroot-2022.05-b/package/Config.in	2022-06-17 01:33:05.557690730 +0200
+--- buildroot-2022.05-a/package/Config.in	2022-09-27 00:21:15.737391251 +0200
++++ buildroot-2022.05-b/package/Config.in	2022-09-27 00:21:16.045389212 +0200
 @@ -2530,6 +2530,7 @@
  	source "package/cpuload/Config.in"
  	source "package/crio/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.
  	source "package/dcron/Config.in"
 diff -uNr --no-dereference buildroot-2022.05-a/package/crun/Config.in buildroot-2022.05-b/package/crun/Config.in
 --- buildroot-2022.05-a/package/crun/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/crun/Config.in	2021-11-15 23:52:29.571054310 +0100
++++ buildroot-2022.05-b/package/crun/Config.in	2022-07-05 01:47:59.924261678 +0200
 @@ -0,0 +1,10 @@
 +config BR2_PACKAGE_CRUN
 +	bool "crun"
@@ -25,15 +25,15 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/crun/Config.in buildroot-
 +	  https://github.com/containers/crun
 diff -uNr --no-dereference buildroot-2022.05-a/package/crun/crun.mk buildroot-2022.05-b/package/crun/crun.mk
 --- buildroot-2022.05-a/package/crun/crun.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/crun/crun.mk	2022-06-16 01:20:01.655465825 +0200
-@@ -0,0 +1,26 @@
++++ buildroot-2022.05-b/package/crun/crun.mk	2022-09-27 00:20:56.881516201 +0200
+@@ -0,0 +1,28 @@
 +################################################################################
 +#
 +# crun
 +#
 +################################################################################
 +
-+CRUN_VERSION = 1.4.5
++CRUN_VERSION = 1.6
 +#CRUN_SITE = $(call github,containers,crun,$(CRUN_VERSION))
 +CRUN_SITE = https://github.com/containers/crun.git
 +CRUN_SITE_METHOD = git
@@ -43,6 +43,8 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/crun/crun.mk buildroot-20
 +
 +CRUN_DEPENDENCIES = libcap libseccomp libyajl
 +CRUN_GIT_SUBMODULES = YES
++
++# CRUN_CONF_OPTS = --disable-bpf
 +
 +define CRUN_RUN_AUTOGEN
 +	cd $(@D) && \

@@ -6,6 +6,7 @@ PACKAGES=(conmon podman containernetworking-plugins cri-tools crio libslirp slir
 
 [ $# -ge 1 ] && PACKAGES=$@
 
+[ ! -e ../../temp ] && mkdir ../../temp
 cd ../../temp
 
 # download buildroot if it doesn't exist

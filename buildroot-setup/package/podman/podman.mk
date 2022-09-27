@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PODMAN_VERSION = v4.1.0
+PODMAN_VERSION = v4.2.1
 #PODMAN_SOURCE = $(PODMAN_VERSION).tar.gz
 #PODMAN_SITE = https://github.com/containers/podman/archive/refs/tags              
 PODMAN_SITE = $(call github,containers,podman,$(PODMAN_VERSION))
