@@ -5,7 +5,7 @@ FROM debian:bullseye
 ENV UPDATE_CONFIG=0
 
 # Set buildroot version
-ENV VERS=2022.05
+ENV VERS=2022.08
 
 # Set build command/s
 ENV RUNCMD="make"
