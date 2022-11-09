@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRUN_VERSION = 1.6
+CRUN_VERSION = 1.7
 #CRUN_SITE = $(call github,containers,crun,$(CRUN_VERSION))
 CRUN_SITE = https://github.com/containers/crun.git
 CRUN_SITE_METHOD = git

@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
---- buildroot-2022.05-a/package/Config.in	2022-09-27 00:21:16.213388101 +0200
-+++ buildroot-2022.05-b/package/Config.in	2022-09-27 00:21:16.389386936 +0200
+--- buildroot-2022.05-a/package/Config.in	2022-11-08 00:11:23.411855275 +0100
++++ buildroot-2022.05-b/package/Config.in	2022-11-08 00:11:23.731845477 +0100
 @@ -2598,6 +2598,7 @@
  	source "package/sdbus-cpp/Config.in"
  	source "package/sdbusplus/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.
  	source "package/supervisor/Config.in"
 diff -uNr --no-dereference buildroot-2022.05-a/package/shadow/Config.in buildroot-2022.05-b/package/shadow/Config.in
 --- buildroot-2022.05-a/package/shadow/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/shadow/Config.in	2022-07-05 01:47:59.924261678 +0200
++++ buildroot-2022.05-b/package/shadow/Config.in	2021-11-23 02:14:23.902902863 +0100
 @@ -0,0 +1,50 @@
 +config BR2_PACKAGE_SHADOW
 +	bool "shadow tools"
@@ -65,7 +65,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/shadow/Config.in buildroo
 +	  https://github.com/shadow-maint/shadow
 diff -uNr --no-dereference buildroot-2022.05-a/package/shadow/shadow.mk buildroot-2022.05-b/package/shadow/shadow.mk
 --- buildroot-2022.05-a/package/shadow/shadow.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/shadow/shadow.mk	2022-07-05 01:47:59.928261649 +0200
++++ buildroot-2022.05-b/package/shadow/shadow.mk	2022-01-27 01:06:20.007237231 +0100
 @@ -0,0 +1,22 @@
 +################################################################################
 +#

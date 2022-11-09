@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
---- buildroot-2022.05-a/package/Config.in	2022-09-27 00:21:12.757410969 +0200
-+++ buildroot-2022.05-b/package/Config.in	2022-09-27 00:21:13.801404059 +0200
+--- buildroot-2022.05-a/package/Config.in	2022-11-08 00:11:19.815965421 +0100
++++ buildroot-2022.05-b/package/Config.in	2022-11-08 00:11:20.579942013 +0100
 @@ -1854,6 +1854,7 @@
  	source "package/librsync/Config.in"
  	source "package/libshairplay/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.
  	source "package/libsrtp/Config.in"
 diff -uNr --no-dereference buildroot-2022.05-a/package/libslirp/Config.in buildroot-2022.05-b/package/libslirp/Config.in
 --- buildroot-2022.05-a/package/libslirp/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/libslirp/Config.in	2022-07-05 01:47:59.924261678 +0200
++++ buildroot-2022.05-b/package/libslirp/Config.in	2021-11-12 00:48:08.308624793 +0100
 @@ -0,0 +1,8 @@
 +config BR2_PACKAGE_LIBSLIRP
 +	bool "libslirp"
@@ -23,7 +23,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/libslirp/Config.in buildr
 +	  https://gitlab.freedesktop.org/slirp/libslirp
 diff -uNr --no-dereference buildroot-2022.05-a/package/libslirp/libslirp.mk buildroot-2022.05-b/package/libslirp/libslirp.mk
 --- buildroot-2022.05-a/package/libslirp/libslirp.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/libslirp/libslirp.mk	2022-07-05 01:47:59.924261678 +0200
++++ buildroot-2022.05-b/package/libslirp/libslirp.mk	2022-05-05 16:14:17.219855032 +0200
 @@ -0,0 +1,16 @@
 +################################################################################
 +#

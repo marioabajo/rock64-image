@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
---- buildroot-2022.05-a/package/Config.in	2022-09-27 00:21:14.785397548 +0200
-+++ buildroot-2022.05-b/package/Config.in	2022-09-27 00:21:15.569392361 +0200
+--- buildroot-2022.05-a/package/Config.in	2022-11-08 00:11:21.759905866 +0100
++++ buildroot-2022.05-b/package/Config.in	2022-11-08 00:11:22.455884550 +0100
 @@ -1701,6 +1701,7 @@
  	source "package/libxmlpp/Config.in"
  	source "package/libxmlrpc/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.
  	source "package/pugixml/Config.in"
 diff -uNr --no-dereference buildroot-2022.05-a/package/libyajl/Config.in buildroot-2022.05-b/package/libyajl/Config.in
 --- buildroot-2022.05-a/package/libyajl/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/libyajl/Config.in	2022-07-05 01:47:59.924261678 +0200
++++ buildroot-2022.05-b/package/libyajl/Config.in	2021-11-15 23:44:18.004561026 +0100
 @@ -0,0 +1,22 @@
 +config BR2_PACKAGE_LIBYAJL
 +	bool "libyajl"
@@ -37,7 +37,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/libyajl/Config.in buildro
 +	  https://github.com/lloyd/yajl
 diff -uNr --no-dereference buildroot-2022.05-a/package/libyajl/libyajl.mk buildroot-2022.05-b/package/libyajl/libyajl.mk
 --- buildroot-2022.05-a/package/libyajl/libyajl.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/libyajl/libyajl.mk	2022-07-05 01:47:59.924261678 +0200
++++ buildroot-2022.05-b/package/libyajl/libyajl.mk	2022-05-05 16:17:23.418112748 +0200
 @@ -0,0 +1,14 @@
 +################################################################################
 +#

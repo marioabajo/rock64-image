@@ -1,6 +1,6 @@
 diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.05-b/package/Config.in
---- buildroot-2022.05-a/package/Config.in	2022-09-27 00:21:13.965402974 +0200
-+++ buildroot-2022.05-b/package/Config.in	2022-09-27 00:21:14.609398713 +0200
+--- buildroot-2022.05-a/package/Config.in	2022-11-08 00:11:20.891932454 +0100
++++ buildroot-2022.05-b/package/Config.in	2022-11-08 00:11:21.439915668 +0100
 @@ -2360,6 +2360,7 @@
  	source "package/shadowsocks-libev/Config.in"
  	source "package/shairport-sync/Config.in"
@@ -11,7 +11,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/Config.in buildroot-2022.
  	source "package/snmpclitools/Config.in"
 diff -uNr --no-dereference buildroot-2022.05-a/package/slirp4netns/Config.in buildroot-2022.05-b/package/slirp4netns/Config.in
 --- buildroot-2022.05-a/package/slirp4netns/Config.in	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/slirp4netns/Config.in	2022-07-05 01:47:59.928261649 +0200
++++ buildroot-2022.05-b/package/slirp4netns/Config.in	2021-11-12 00:37:34.119331969 +0100
 @@ -0,0 +1,12 @@
 +config BR2_PACKAGE_SLIRP4NETNS
 +	bool "slirp4netns"
@@ -27,7 +27,7 @@ diff -uNr --no-dereference buildroot-2022.05-a/package/slirp4netns/Config.in bui
 +
 diff -uNr --no-dereference buildroot-2022.05-a/package/slirp4netns/slirp4netns.mk buildroot-2022.05-b/package/slirp4netns/slirp4netns.mk
 --- buildroot-2022.05-a/package/slirp4netns/slirp4netns.mk	1970-01-01 01:00:00.000000000 +0100
-+++ buildroot-2022.05-b/package/slirp4netns/slirp4netns.mk	2022-07-05 01:47:59.928261649 +0200
++++ buildroot-2022.05-b/package/slirp4netns/slirp4netns.mk	2022-05-04 01:02:59.089690214 +0200
 @@ -0,0 +1,21 @@
 +################################################################################
 +#
