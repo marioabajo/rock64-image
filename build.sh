@@ -20,9 +20,10 @@ fi
 # Generate the toolchain
 if [ ! -e ".toolchain-rockore" ]; then
 	echo "###### Generating Toolchain..."
-	cp -av rock64-image/buildroot-setup/buildroot-toolchain.config buildroot/.config
+	#cp -av rock64-image/buildroot-setup/buildroot-toolchain.config buildroot/.config
+	BR_OVERLAY=$(pwd)/buildroot-rockore
 	cd buildroot
-	make oldconfig
+	make BR2_EXTERNAL=$BR_OVERLAY rockore_tc_rock64_defconfig
 	make source
 	make sdk
 
@@ -36,26 +37,28 @@ if [ ! -e ".toolchain-rockore" ]; then
 fi
 
 # Download from repository the latest configuration and patches
-if [ ! -e "buildroot/.buildroot_board_env" ]; then
-	echo "###### Setting up buildroot environment..."
-	cp -av rock64-image/buildroot-setup/. buildroot
-	cp -av rock64-image/buildroot-setup/buildroot.config buildroot/.config
-
-	if [ -e buildroot/patches ] && [ ! -e buildroot/patches/.applied ]; then
-		cd buildroot
-		for p in patches/*; do
-			patch -p1 < "$p"
-		done && touch patches/.applied
-		cd ..
-	fi
-	touch buildroot/.buildroot_board_env
-fi
+#if [ ! -e "buildroot/.buildroot_board_env" ]; then
+#	echo "###### Setting up buildroot environment..."
+#	cp -av rock64-image/buildroot-setup/. buildroot
+#	cp -av rock64-image/buildroot-setup/buildroot.config buildroot/.config
+#
+#	if [ -e buildroot/patches ] && [ ! -e buildroot/patches/.applied ]; then
+#		cd buildroot
+#		for p in patches/*; do
+#			patch -p1 < "$p"
+#		done && touch patches/.applied
+#		cd ..
+#	fi
+#	touch buildroot/.buildroot_board_env
+#fi
 
 # Start the board build process
-if [ -e "buildroot/.buildroot_board_env" ]; then
+#if [ -e "buildroot/.buildroot_board_env" ]; then
+if [ ! -e "buildroot/.buildroot_board_env" ]; then
 	echo "##### Board image building..."
+	BR_OVERLAY=$(pwd)/buildroot-rockore
 	cd buildroot
-	make oldconfig
+	make BR2_EXTERNAL=$BR_OVERLAY rockore_rock64_defconfig
 	make source
 	$RUNCMD
 fi

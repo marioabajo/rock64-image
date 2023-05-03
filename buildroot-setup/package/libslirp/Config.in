@@ -1,8 +1,0 @@
-config BR2_PACKAGE_LIBSLIRP
-	bool "libslirp"
-	depends on BR2_USE_MMU
-	select BR2_PACKAGE_LIBGLIB2
-	help
-	  libslirp is a user-mode networking library used by virtual machines, containers or various tools.
-
-	  https://gitlab.freedesktop.org/slirp/libslirp
