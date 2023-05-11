@@ -116,8 +116,8 @@ download_and_check $IMAGE
 echo "-- Search for partitions..."
 
 ## get partitions starting with label rootfs
-currentroot_part=$( list_partitions_by_name rootfs | awk '/rootfs$/ {print $1}' )
-currentroot_partnum=${currentroot_part: -1}
+currentboot_part=$( list_partitions_by_name rootfs | awk '/bootfs$/ {print $1}' )
+currentboot_partnum=${currentboot_part: -1}
 
 ## if there is a "rootfs-old" partition already created use it
 root_part=$( list_partitions_by_name rootfs-old | awk '/rootfs-old/ {print $1}' )
@@ -158,15 +158,15 @@ tar -zxf ${IMAGE} bootfs.ext4 -O --totals > "${boot_part}"
 
 ## Set bootable flag on new partition
 echo "-- Seting bootable flag on new partition..."
-parted ${DEVICE} -s "set ${root_partnum} legacy_boot"
+parted ${DEVICE} -s "set ${boot_partnum} legacy_boot"
 
 ## Rename partitions rootfs <-> rootfs-old
 rename_partitions rootfs ${root_partnum}
 rename_partitions bootfs ${boot_partnum}
 
 ## Unset bootable flag on currently running partition
-echo "-- Unsetting bootable flag on currently running rootfs"
-parted ${DEVICE} -s "set ${currentroot_partnum} legacy_boot off"
+echo "-- Unsetting bootable flag on currently running bootfs"
+parted ${DEVICE} -s "set ${currentboot_partnum} legacy_boot off"
 
 
 ## Update boot loader

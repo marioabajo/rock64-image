@@ -5,7 +5,7 @@ set -e
 [ ! -e release ] && mkdir release
 cd buildroot/output/images
 
-BOARD=$(awk -F '=' '/BR2_GLOBAL_PATCH_DIR/ {split($2,a,"/"); printf("%s-%s"),a[2],a[3]}' < ../../.config)
+BOARD=$(awk -F '=' '/BR2_GLOBAL_PATCH_DIR/ {split($2,a,"/"); printf("%s-%s"),a[3],a[4]}' < ../../.config)
 
 sha256sum u-boot-tpl-spl.img u-boot.itb bootfs.ext4 rootfs.squashfs > checksum.sha256
 tar -czpf rockos-${BOARD}-$(cat version.txt).tar.gz u-boot-tpl-spl.img u-boot.itb bootfs.ext4 rootfs.squashfs checksum.sha256

@@ -1,4 +1,8 @@
 Pending tasks:
+- improve "board" detection in update-system-image
+- improve "board" detection in generate-release.sh
+- add sdimage to the generate-release.sh
+- modify prepare.sh so it doesn't run build.sh if RUNCMD is defined, also set "build.sh" as default if RUNCMD is empty, set RUNCMD empty by default
 - systemd watchdot config snippet seems to not be working correctly
 - Solve MAC issue
 - Solve GO bootstrap on aarch64
