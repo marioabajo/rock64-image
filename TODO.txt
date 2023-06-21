@@ -1,4 +1,6 @@
 Pending tasks:
+- Need to add "ipam/host-local" in cni-plugins, currently i have not patch but manually chaning the cni-plugins.mk
+- Needs microshift patched -> modify "hostname -A" -> "hostname -f"; alternative option, add support of hostname -A to hostname package
 - improve "board" detection in update-system-image
 - improve "board" detection in generate-release.sh
 - add sdimage to the generate-release.sh

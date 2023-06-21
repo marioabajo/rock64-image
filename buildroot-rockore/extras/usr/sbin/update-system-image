@@ -116,7 +116,7 @@ download_and_check $IMAGE
 echo "-- Search for partitions..."
 
 ## get partitions starting with label rootfs
-currentboot_part=$( list_partitions_by_name rootfs | awk '/bootfs$/ {print $1}' )
+currentboot_part=$( list_partitions_by_name bootfs | awk '/bootfs$/ {print $1}' )
 currentboot_partnum=${currentboot_part: -1}
 
 ## if there is a "rootfs-old" partition already created use it

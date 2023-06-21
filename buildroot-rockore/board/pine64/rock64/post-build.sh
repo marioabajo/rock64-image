@@ -37,9 +37,9 @@ VERSION_ID="${VERSION}-${BUILD_DATE}"
 HOME_URL="https://github.com/marioabajo/rock64-image"
 EOF
 
-# Generate bootfs.ext4 image containing the kernel and device tree file
+# Generate bootfs.ext4 image containing the kernel, device tree and boot.scr file
 dd if=/dev/zero of=$BINARIES_DIR/bootfs.ext4 bs=1M count=100
 mkfs.ext4 $BINARIES_DIR/bootfs.ext4
 e2cp $BINARIES_DIR/Image $BINARIES_DIR/bootfs.ext4:
 e2cp $BINARIES_DIR/rk3328-rock64.dtb $BINARIES_DIR/bootfs.ext4:
-
+e2cp $TARGET_DIR/boot/boot.scr $BINARIES_DIR/bootfs.ext4:

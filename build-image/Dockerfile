@@ -8,7 +8,7 @@ ENV UPDATE_CONFIG=0
 ENV VERS=2023.02
 
 # Set build command/s
-ENV RUNCMD="make"
+ENV RUNCMD=""
 
 # Set repository to clone
 #ENV REPO="https://github.com/marioabajo/rock64-image"

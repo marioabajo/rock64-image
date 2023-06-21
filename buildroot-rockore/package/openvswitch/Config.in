@@ -1,0 +1,16 @@
+config BR2_PACKAGE_OPENVSWITCH
+	bool "openvswitch"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	depends on BR2_PACKAGE_HOST_GO_TARGET_CGO_LINKING_SUPPORTS
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on !BR2_TOOLCHAIN_USES_UCLIBC
+	depends on BR2_USE_MMU
+	select BR2_PACKAGE_LIBGLIB2
+
+	help
+	  Open vSwitch is a multilayer software switch. Our goal is to 
+	  implement a production quality switch platform that supports
+	  standard management interfaces and opens the forwarding 
+	  functions to programmatic extension and control.
+
+	  https://github.com/openvswitch/ovs

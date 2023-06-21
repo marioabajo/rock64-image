@@ -58,8 +58,12 @@ if [ ! -e "buildroot/.buildroot_board_env" ]; then
 	echo "##### Board image building..."
 	BR_OVERLAY=$(pwd)/buildroot-rockore
 	cd buildroot
-	make BR2_EXTERNAL=$BR_OVERLAY rockore_rock64_defconfig
-	make source
-	$RUNCMD
+	if [ -z "$RUNCMD" ]; then
+		make BR2_EXTERNAL=$BR_OVERLAY rockore_rock64_defconfig
+		make source
+		make
+	else
+		$RUNCMD
+	fi
 fi
 
